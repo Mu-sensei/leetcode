@@ -1,0 +1,37 @@
+# ---- macOS ----
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ---- JetBrains / PyCharm ----
+.idea/
+*.iml
+out/
+*.iws
+*.ipr
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+
+# ---- 虚拟环境 ----
+.venv/
+venv/
+env/
+ENV/
+
+# ---- 测试 / 覆盖率 ----
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ---- 本地临时文件 ----
+*.local
+scratch_*.py
