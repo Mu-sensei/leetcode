@@ -29,5 +29,9 @@
 # 解释: a@b.com 出现了两次。
 
 # leetcode submit region begin(Prohibit modification and deletion)
-
+# Write your MySQL query statement below
+SELECT email
+FROM Person
+GROUP BY email
+HAVING COUNT(*) > 1;
 # leetcode submit region end(Prohibit modification and deletion)

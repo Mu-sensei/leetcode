@@ -32,5 +32,9 @@
 # 解释: Joe 是唯一挣得比经理多的雇员。
 
 # leetcode submit region begin(Prohibit modification and deletion)
-
+# Write your MySQL query statement below
+SELECT e.Name AS Employee
+FROM Employee e
+JOIN Employee m ON e.ManagerId = m.Id
+WHERE e.Salary > m.Salary;
 # leetcode submit region end(Prohibit modification and deletion)

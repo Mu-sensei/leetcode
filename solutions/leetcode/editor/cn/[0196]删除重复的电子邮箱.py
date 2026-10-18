@@ -32,5 +32,10 @@
 # 解释: john@example.com重复两次。我们保留最小的Id = 1。
 
 # leetcode submit region begin(Prohibit modification and deletion)
-
+# Write your MySQL query statement below
+DELETE p1
+FROM Person p1
+JOIN Person p2 
+  ON p1.email = p2.email 
+  AND p1.id > p2.id;
 # leetcode submit region end(Prohibit modification and deletion)

@@ -35,5 +35,10 @@
 # 2015-01-04 的温度比前一天高（20 -> 30）
 
 # leetcode submit region begin(Prohibit modification and deletion)
-
+# Write your MySQL query statement below
+SELECT w1.id
+FROM Weather w1
+JOIN Weather w2
+ON w1.recordDate = DATE_ADD(w2.recordDate, INTERVAL 1 DAY)
+WHERE w1.temperature > w2.temperature;
 # leetcode submit region end(Prohibit modification and deletion)
