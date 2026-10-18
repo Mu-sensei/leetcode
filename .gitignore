@@ -35,3 +35,8 @@ htmlcov/
 # ---- 本地临时文件 ----
 *.local
 scratch_*.py
+
+# ---- 自动同步（launchd）----
+tools/.cache/
+tools/.autosync.lock
+
