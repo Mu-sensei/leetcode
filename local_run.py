@@ -9,20 +9,23 @@
     python local_run.py 21           # 跑链表类题目(自动转 ListNode)
 
 它做了什么:
-    1. 在 solutions/leetcode/editor/cn/ 里按题号找到 [NNNN]标题.py
-    2. 动态加载文件里的 Solution 类
-    3. 跑 TESTCASES 里为该题定义的示例, 对比期望输出
+    1. 在 solutions/leetcode/editor/cn/ 里按题号找到 [NNNN]标题.{py,c,cpp}
+    2. Python 题(.py): 动态加载文件里的 Solution 类, 跑 TESTCASES 里的示例
+    3. C/C++ 题(.c/.cpp): 调用 gcc/g++ 编译, 运行其自带 main() 的 PASS/FAIL 断言
 
 说明:
     - 如果某题还是空壳(stub, 方法体没实现), 会提示先填解法。
     - SQL 类题目(文件里是 MySQL 语句)无法用本脚本跑, 请用 MySQL 验证。
-    - 想加新题的用例, 往下面的 TESTCASES 里照格式加即可。
+    - 想加新题的用例, Python 题往下面的 TESTCASES 里照格式加即可;
+      C/C++ 题的用例写在各自源文件的 main() 里。
 """
 
 import sys
 import os
 import re
 import importlib.util
+import subprocess
+import tempfile
 
 CN_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                       "solutions", "leetcode", "editor", "cn")
@@ -56,7 +59,7 @@ TESTCASES = {
     1: ("plain", [
         (([2, 7, 11, 15], 9), [0, 1]),
         (([3, 2, 4], 6), [1, 2]),
-        (([-1, -2, -3, -4], -7), [0, 3]),
+        (([-1, -2, -3, -4], -7), [2, 3]),
     ]),
     9: ("plain", [
         ((121,), True),
@@ -106,11 +109,44 @@ def norm(mode, val):
     return val
 
 
+def run_compiled(path, pid):
+    """编译并运行 C(.c)/C++(.cpp) 解法文件, 判定其自带 main() 里的 PASS/FAIL。"""
+    ext = os.path.splitext(path)[1].lower()
+    compiler = "g++" if ext == ".cpp" else "gcc"
+    out = tempfile.mktemp(suffix=".out")
+    try:
+        build = subprocess.run([compiler, path, "-o", out],
+                               capture_output=True, text=True)
+        if build.returncode != 0:
+            print(f"[!] 编译失败 ({compiler} {os.path.basename(path)}):")
+            print(build.stderr)
+            return False
+        exe = subprocess.run([out], capture_output=True, text=True)
+        if exe.stdout:
+            print(exe.stdout, end="")
+        if exe.stderr:
+            print(exe.stderr, end="")
+        combined = exe.stdout + exe.stderr
+        if exe.returncode != 0 or "FAIL" in combined:
+            print(f"[✗] 第 {pid} 题 C/C++ 测试未通过 (exit={exe.returncode})")
+            return False
+        print(f"[✓] 第 {pid} 题 C/C++ 编译运行通过")
+        return True
+    finally:
+        try:
+            os.unlink(out)
+        except OSError:
+            pass
+
+
 def run(pid):
     path = find_file(pid)
     if not path:
         print(f"[!] 找不到第 {pid} 题的文件(应在 {CN_DIR})")
         return False
+    ext = os.path.splitext(path)[1].lower()
+    if ext in (".c", ".cpp"):
+        return run_compiled(path, pid)
     print(f"[*] 加载: {os.path.basename(path)}")
     try:
         Solution = load_solution(path)

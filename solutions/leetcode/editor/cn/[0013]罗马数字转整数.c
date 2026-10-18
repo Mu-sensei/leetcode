@@ -24,10 +24,11 @@ int romanToInt(char* s) {
 }
 
 /* ---- 本地测试：gcc [0013]罗马数字转整数.c && ./a.out ---- */
-int main()
-{
-    printf("%d\n", romanToInt("III"));      /* 3    */
-    printf("%d\n", romanToInt("IV"));       /* 4    */
-    printf("%d\n", romanToInt("MCMXCIV"));  /* 1994 */
-    return 0;
+int main() {
+    int fails = 0;
+    int r;
+    r = romanToInt("III");     printf("romanToInt(\"III\")     = %d  期望 3    %s\n", r, r==3?"PASS":"FAIL");    fails += (r==3)?0:1;
+    r = romanToInt("IV");      printf("romanToInt(\"IV\")      = %d  期望 4    %s\n", r, r==4?"PASS":"FAIL");    fails += (r==4)?0:1;
+    r = romanToInt("MCMXCIV"); printf("romanToInt(\"MCMXCIV\") = %d  期望 1994 %s\n", r, r==1994?"PASS":"FAIL"); fails += (r==1994)?0:1;
+    return fails ? 1 : 0;
 }

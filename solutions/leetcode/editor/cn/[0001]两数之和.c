@@ -21,13 +21,20 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
 }
 
 /* ---- 本地测试：gcc [0001]两数之和.c && ./a.out ---- */
-int main()
-{
-    int nums[] = {2, 7, 11, 15};
-    int target = 9;
+static int check(int* nums, int n, int target, int e0, int e1) {
     int returnSize = 0;
-    int* r = twoSum(nums, 4, target, &returnSize);
-    printf("[%d, %d]\n", r[0], r[1]); /* 期望: [0, 1] */
+    int* r = twoSum(nums, n, target, &returnSize);
+    int ok = (returnSize == 2 && r[0] == e0 && r[1] == e1);
+    printf("twoSum(..., %d) = [%d, %d]  期望 [%d, %d]  %s\n",
+           target, r[0], r[1], e0, e1, ok ? "PASS" : "FAIL");
     free(r);
-    return 0;
+    return ok ? 0 : 1;
+}
+
+int main() {
+    int fails = 0;
+    int a1[] = {2, 7, 11, 15};   fails += check(a1, 4, 9, 0, 1);
+    int a2[] = {3, 2, 4};        fails += check(a2, 3, 6, 1, 2);
+    int a3[] = {-1, -2, -3, -4}; fails += check(a3, 4, -7, 2, 3);
+    return fails ? 1 : 0;
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 // Definition for singly-linked list.
 struct ListNode {
@@ -51,22 +52,26 @@ static ListNode* build(int arr[], int n) {
     return head;
 }
 
-static void printList(ListNode* l) {
+static std::string listToStr(ListNode* l) {
+    std::string s;
     while (l != nullptr) {
-        std::cout << l->val;
-        if (l->next) std::cout << "->";
+        s += std::to_string(l->val);
+        if (l->next) s += "->";
         l = l->next;
     }
-    std::cout << std::endl;
+    return s;
 }
 
-int main()
-{
+int main() {
     int a1[] = {2, 4, 3}; // 342
     int a2[] = {5, 6, 4}; // 465
     ListNode* l1 = build(a1, 3);
     ListNode* l2 = build(a2, 3);
     ListNode* res = Solution().addTwoNumbers(l1, l2);
-    printList(res); // 期望: 7->0->8 (807)
-    return 0;
+    std::string got = listToStr(res);
+    std::string exp = "7->0->8";
+    bool ok = (got == exp);
+    std::cout << "addTwoNumbers([2,4,3],[5,6,4]) = " << got
+              << "  期望 " << exp << "  " << (ok ? "PASS" : "FAIL") << std::endl;
+    return ok ? 0 : 1;
 }
