@@ -39,11 +39,28 @@
 # 	关于罗马数字的详尽书写规则，可以参考 罗马数字 - 百度百科。
 
 # leetcode submit region begin(Prohibit modification and deletion)
-class Solution(object):
-    def romanToInt(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
-        
+
+# 原始提交语言: C
+int romanToInt(char* s) {
+    int symbolValues[26];
+    symbolValues['I' - 'A'] = 1;
+    symbolValues['V' - 'A'] = 5;
+    symbolValues['X' - 'A'] = 10;
+    symbolValues['L' - 'A'] = 50;
+    symbolValues['C' - 'A'] = 100;
+    symbolValues['D' - 'A'] = 500;
+    symbolValues['M' - 'A'] = 1000;
+    int ans = 0;
+    int n = strlen(s);
+    for (int i = 0; i < n; ++i) {
+        int value = symbolValues[s[i] - 'A'];
+        if (i < n - 1 && value < symbolValues[s[i + 1] - 'A']) {
+            ans -= value;
+        } else {
+            ans += value;
+        }
+    }
+    return ans;
+}
+
 # leetcode submit region end(Prohibit modification and deletion)

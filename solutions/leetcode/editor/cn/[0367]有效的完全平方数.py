@@ -13,11 +13,24 @@
 # 	1 <= num <= 231 - 1
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def isPerfectSquare(self, num):
         """
         :type num: int
         :rtype: bool
         """
-        
+        left = 1
+        right = num
+        while left <= right:
+            mid = (left + right) // 2
+            mid_squared = mid * mid
+            if mid_squared == num:
+                return True
+            elif mid_squared < num:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return False
+
 # leetcode submit region end(Prohibit modification and deletion)

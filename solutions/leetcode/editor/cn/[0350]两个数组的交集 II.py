@@ -14,6 +14,7 @@
 # 	如果 nums2 的元素存储在磁盘上，内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def intersect(self, nums1, nums2):
         """
@@ -21,5 +22,19 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: List[int]
         """
+        count_map = {}
+        for num in nums1:
+            if num in count_map:
+                count_map[num] += 1
+            else:
+                count_map[num] = 1
         
+        result = []
+        for num in nums2:
+            if num in count_map and count_map[num] > 0:
+                result.append(num)
+                count_map[num] -= 1
+        
+        return result
+
 # leetcode submit region end(Prohibit modification and deletion)

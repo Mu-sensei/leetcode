@@ -11,6 +11,7 @@
 # 进阶: 如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def isAnagram(self, s, t):
         """
@@ -18,5 +19,20 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-        
+        if len(s) != len(t):
+            return False
+        s_count = {}
+        for char in s:
+            if char in s_count:
+                s_count[char] += 1
+            else:
+                s_count[char] = 1
+        t_count = {}
+        for char in t:
+            if char in t_count:
+                t_count[char] += 1
+            else:
+                t_count[char] = 1
+        return s_count == t_count
+
 # leetcode submit region end(Prohibit modification and deletion)

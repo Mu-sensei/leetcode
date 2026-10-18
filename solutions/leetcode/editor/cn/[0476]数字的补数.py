@@ -14,11 +14,19 @@
 # 注意：本题与 1009 https://leetcode.cn/problems/complement-of-base-10-integer/ 相同
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def findComplement(self, num):
         """
         :type num: int
         :rtype: int
         """
-        
+        mask = 1
+        temp = num
+        while temp > 0:
+            temp >>= 1
+            mask <<= 1
+        mask -= 1
+        return num ^ mask
+
 # leetcode submit region end(Prohibit modification and deletion)

@@ -19,11 +19,29 @@
 # 进阶：你能设计一个时间复杂度 O(n) 的解决方案吗？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def thirdMax(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
+        first = second = third = float('-inf')
         
+        for num in nums:
+            if num == first or num == second or num == third:
+                continue
+            
+            if num > first:
+                third = second
+                second = first
+                first = num
+            elif num > second:
+                third = second
+                second = num
+            elif num > third:
+                third = num
+        
+        return first if third == float('-inf') else third
+
 # leetcode submit region end(Prohibit modification and deletion)

@@ -14,11 +14,23 @@
 # 进阶：尝试设计时间复杂度为 O(n)、空间复杂度为 O(1) 的算法解决此问题。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def majorityElement(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        
+        candidate = nums[0]
+        count = 1
+        for num in nums[1:]:
+            if num == candidate:
+                count += 1
+            else:
+                count -= 1
+                if count == 0:
+                    candidate = num
+                    count = 1
+        return candidate
+
 # leetcode submit region end(Prohibit modification and deletion)

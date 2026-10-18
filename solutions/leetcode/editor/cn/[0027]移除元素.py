@@ -32,6 +32,7 @@
 # 	0 <= val <= 100
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def removeElement(self, nums, val):
         """
@@ -39,5 +40,11 @@ class Solution(object):
         :type val: int
         :rtype: int
         """
-        
+        j = 0
+        for i in range(len(nums)):
+            if nums[i] != val:
+                nums[j] = nums[i]
+                j += 1
+        return j
+
 # leetcode submit region end(Prohibit modification and deletion)

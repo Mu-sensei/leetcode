@@ -21,13 +21,14 @@
 # 	最多调用 104 次 sumRange 方法
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class NumArray(object):
 
     def __init__(self, nums):
         """
         :type nums: List[int]
         """
-        
+        self.nums = nums
 
     def sumRange(self, left, right):
         """
@@ -35,10 +36,14 @@ class NumArray(object):
         :type right: int
         :rtype: int
         """
-        
+        total = 0
+        for i in range(left, right + 1):
+            total += self.nums[i]
+        return total
 
 
 # Your NumArray object will be instantiated and called as such:
 # obj = NumArray(nums)
 # param_1 = obj.sumRange(left,right)
+
 # leetcode submit region end(Prohibit modification and deletion)

@@ -12,11 +12,18 @@
 # 	1 <= n <= 231 - 1
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def arrangeCoins(self, n):
         """
         :type n: int
         :rtype: int
         """
-        
+        row = 0
+        total = 0
+        while total + row + 1 <= n:
+            row += 1
+            total += row
+        return row
+
 # leetcode submit region end(Prohibit modification and deletion)

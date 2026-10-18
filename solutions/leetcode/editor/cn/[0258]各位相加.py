@@ -14,11 +14,15 @@
 # 进阶：你可以不使用循环或者递归，在 O(1) 时间复杂度内解决这个问题吗？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def addDigits(self, num):
         """
         :type num: int
         :rtype: int
         """
-        
+        while num >= 10:
+            num = sum(int(i) for i in str(num))
+        return num
+
 # leetcode submit region end(Prohibit modification and deletion)

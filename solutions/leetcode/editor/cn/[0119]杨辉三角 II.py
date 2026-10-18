@@ -15,11 +15,17 @@
 # 你可以优化你的算法到 O(rowIndex) 空间复杂度吗？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def getRow(self, rowIndex):
         """
         :type rowIndex: int
         :rtype: List[int]
         """
-        
+        row = [1] * (rowIndex + 1)
+        for i in range(2, rowIndex + 1):
+            for j in range(i - 1, 0, -1):
+                row[j] = row[j] + row[j - 1]
+        return row
+
 # leetcode submit region end(Prohibit modification and deletion)

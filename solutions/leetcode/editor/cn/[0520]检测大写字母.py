@@ -14,11 +14,25 @@
 # 	word 由小写和大写英文字母组成
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def detectCapitalUse(self, word):
         """
         :type word: str
         :rtype: bool
         """
+        upper_count = 0
+        for c in word:
+            if ord('A') <= ord(c) <= ord('Z'):
+                upper_count += 1
         
+        if upper_count == len(word):
+            return True
+        if upper_count == 0:
+            return True
+        if upper_count == 1 and ord('A') <= ord(word[0]) <= ord('Z'):
+            return True
+        
+        return False
+
 # leetcode submit region end(Prohibit modification and deletion)

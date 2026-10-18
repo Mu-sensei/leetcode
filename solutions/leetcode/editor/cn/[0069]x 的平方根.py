@@ -12,11 +12,24 @@
 # 	0 <= x <= 231 - 1
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def mySqrt(self, x):
         """
         :type x: int
         :rtype: int
         """
+        left, right = 0, x
+        result = 0
+        while left <= right:
+            mid = (left + right) // 2
+            square = mid * mid
+            if square <= x:
+                result = mid
+                left = mid + 1
+            else:
+                right = mid - 1
         
+        return result
+
 # leetcode submit region end(Prohibit modification and deletion)

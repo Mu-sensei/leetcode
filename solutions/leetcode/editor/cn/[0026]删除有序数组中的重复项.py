@@ -25,11 +25,20 @@
 # 	nums 已按 非递减 顺序排列。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def removeDuplicates(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+        k=1
+        for i in range(1,len(nums)):
+            flag = False
+            for j in range(k):
+                if nums[j]==nums[i]:
+                    flag=True
+                    break
+            if not flag:
+                nums[k] = nums[i]
+                k += 1
+        return k
         
+
 # leetcode submit region end(Prohibit modification and deletion)

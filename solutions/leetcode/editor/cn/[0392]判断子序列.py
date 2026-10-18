@@ -16,6 +16,7 @@
 # 	两个字符串都只由小写字符组成。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def isSubsequence(self, s, t):
         """
@@ -23,5 +24,11 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-        
+        i, j = 0, 0
+        while i < len(s) and j < len(t):
+            if s[i] == t[j]:
+                i += 1
+            j += 1
+        return i == len(s)
+
 # leetcode submit region end(Prohibit modification and deletion)

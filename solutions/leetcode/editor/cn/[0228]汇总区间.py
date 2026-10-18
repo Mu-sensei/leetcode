@@ -26,11 +26,29 @@
 # 	nums 按升序排列
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def summaryRanges(self, nums):
         """
         :type nums: List[int]
         :rtype: List[str]
         """
-        
+        if not nums:
+            return []
+        result = []
+        start = nums[0]
+        for i in range(1, len(nums)):
+            if nums[i] != nums[i - 1] + 1:
+                if start == nums[i - 1]:
+                    result.append(str(start))
+                else:
+                    result.append("{}->{}".format(start, nums[i - 1]))
+                start = nums[i]
+        # 处理最后一个区间
+        if start == nums[-1]:
+            result.append(str(start))
+        else:
+            result.append("{}->{}".format(start, nums[-1]))
+        return result
+
 # leetcode submit region end(Prohibit modification and deletion)

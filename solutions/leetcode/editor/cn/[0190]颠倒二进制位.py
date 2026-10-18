@@ -25,11 +25,20 @@
 # 进阶: 如果多次调用这个函数，你将如何优化你的算法？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def reverseBits(self, n):
         """
         :type n: int
         :rtype: int
         """
-        
+        res = 0
+        for i in range(32):
+            # res左移腾位，n取最低位拼接到res末尾
+            res = res << 1
+            res = res | (n&1)
+            # n右移一位，处理下一个二进制位
+            n >>= 1
+        return res
+
 # leetcode submit region end(Prohibit modification and deletion)

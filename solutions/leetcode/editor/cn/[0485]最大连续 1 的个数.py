@@ -11,11 +11,22 @@
 # 	nums[i] 不是 0 就是 1.
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def findMaxConsecutiveOnes(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        
+        current_count = 0
+        max_count = 0
+        for num in nums:
+            if num == 1:
+                current_count += 1
+                if current_count > max_count:
+                    max_count = current_count
+            else:
+                current_count = 0
+        return max_count
+
 # leetcode submit region end(Prohibit modification and deletion)

@@ -21,6 +21,7 @@
 # 	s 中每个单词都被 单个空格 分隔
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def wordPattern(self, pattern, s):
         """
@@ -28,5 +29,20 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        
+        words = s.split()
+        if len(pattern) != len(words):
+            return False
+        char_to_word = {}
+        word_to_char = {}
+        for char, word in zip(pattern, words):
+            if char in char_to_word:
+                if char_to_word[char] != word:
+                    return False
+            else:
+                if word in word_to_char:
+                    return False
+                char_to_word[char] = word
+                word_to_char[word] = char
+        return True
+
 # leetcode submit region end(Prohibit modification and deletion)

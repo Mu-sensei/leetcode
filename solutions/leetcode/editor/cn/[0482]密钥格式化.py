@@ -16,6 +16,7 @@
 # 	1 <= k <= 104
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def licenseKeyFormatting(self, s, k):
         """
@@ -23,5 +24,14 @@ class Solution(object):
         :type k: int
         :rtype: str
         """
-        
+        pure = s.replace('-', '').upper()
+        res = []
+        count = 0
+        for i in range(len(pure)-1, -1, -1):
+            res.append(pure[i])
+            count += 1
+            if count % k == 0 and i != 0:
+                res.append('-')
+        return ''.join(reversed(res))
+
 # leetcode submit region end(Prohibit modification and deletion)

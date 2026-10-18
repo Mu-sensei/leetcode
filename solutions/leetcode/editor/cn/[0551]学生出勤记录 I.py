@@ -19,11 +19,27 @@
 # 	s[i] 为 'A'、'L' 或 'P'
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def checkRecord(self, s):
         """
         :type s: str
         :rtype: bool
         """
-        
+        absent_count = 0
+        late_count = 0
+        for char in s:
+            if char == 'A':
+                absent_count += 1
+                if absent_count >= 2:
+                    return False
+                late_count = 0
+            elif char == 'L':
+                late_count += 1
+                if late_count >= 3:
+                    return False
+            else:
+                late_count = 0
+        return True
+
 # leetcode submit region end(Prohibit modification and deletion)

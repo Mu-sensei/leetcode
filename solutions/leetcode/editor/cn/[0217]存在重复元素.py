@@ -17,11 +17,19 @@
 # 	-109 <= nums[i] <= 109
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def containsDuplicate(self, nums):
         """
         :type nums: List[int]
         :rtype: bool
         """
+        s = set()
+        for num in nums:
+            if num in s:
+                return True
+            s.add(num)
+        return False
         
+
 # leetcode submit region end(Prohibit modification and deletion)

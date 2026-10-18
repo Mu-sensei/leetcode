@@ -12,11 +12,23 @@
 # 	1 <= num <= 108
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def checkPerfectNumber(self, num):
         """
         :type num: int
         :rtype: bool
         """
-        
+        if num <= 1:
+            return False
+        total = 0
+        i = 1
+        while i * i <= num:
+            if num % i == 0:
+                total += i
+                if i != 1 and i != num // i:
+                    total += num // i
+            i += 1
+        return total == num
+
 # leetcode submit region end(Prohibit modification and deletion)

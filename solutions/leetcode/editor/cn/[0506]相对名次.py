@@ -20,11 +20,29 @@
 # 	score 中的所有值 互不相同
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def findRelativeRanks(self, score):
         """
         :type score: List[int]
         :rtype: List[str]
         """
-        
+        n = len(score)
+        rank = [1] * n
+        for i in range(n):
+            for j in range(n):
+                if score[i] < score[j]:
+                    rank[i] += 1
+        res = [""] * n
+        for i in range(n):
+            if rank[i] == 1:
+                res[i] = "Gold Medal"
+            elif rank[i] == 2:
+                res[i] = "Silver Medal"
+            elif rank[i] == 3:
+                res[i] = "Bronze Medal"
+            else:
+                res[i] = str(rank[i])
+        return res
+
 # leetcode submit region end(Prohibit modification and deletion)

@@ -19,6 +19,7 @@
 # 	a 和 b 由小写英文字母组成
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def findLUSlength(self, a, b):
         """
@@ -26,5 +27,9 @@ class Solution(object):
         :type b: str
         :rtype: int
         """
-        
+        if a == b:
+            return -1
+        else:
+            return max(len(a), len(b))
+
 # leetcode submit region end(Prohibit modification and deletion)

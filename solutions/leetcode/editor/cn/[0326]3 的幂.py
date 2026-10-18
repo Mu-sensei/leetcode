@@ -17,11 +17,19 @@
 # 进阶：你能不使用循环或者递归来完成本题吗？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def isPowerOfThree(self, n):
         """
         :type n: int
         :rtype: bool
         """
-        
+        if n <= 0:
+            return False
+        while n != 1:
+            if n % 3 != 0:
+                return False
+            n = n // 3
+        return True
+
 # leetcode submit region end(Prohibit modification and deletion)

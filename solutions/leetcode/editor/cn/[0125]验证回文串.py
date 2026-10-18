@@ -19,11 +19,17 @@
 # 	s 仅由可打印的 ASCII 字符组成
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def isPalindrome(self, s):
         """
         :type s: str
         :rtype: bool
         """
-        
+        new_s = ""
+        for char in s:
+            if char.isalnum():
+                new_s += char.lower()
+        return new_s == new_s[::-1]
+
 # leetcode submit region end(Prohibit modification and deletion)

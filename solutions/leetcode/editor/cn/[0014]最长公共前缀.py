@@ -13,11 +13,18 @@
 # 	strs[i] 如果非空，则仅由小写英文字母组成
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def longestCommonPrefix(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: str
-        """
+        if not strs:
+            return ""
+        prefix = strs[0]
+        for s in strs[1:]:
+            while not s.startswith(prefix):
+                prefix = prefix[:-1]
+                if not prefix:
+                    return ""
+        return prefix
         
+
 # leetcode submit region end(Prohibit modification and deletion)

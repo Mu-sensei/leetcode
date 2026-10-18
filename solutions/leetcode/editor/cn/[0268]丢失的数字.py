@@ -19,11 +19,15 @@
 # 进阶：你能否实现线性时间复杂度、仅使用额外常数空间的算法解决此问题?
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def missingNumber(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        
+        n = len(nums)
+        total = n * (n + 1) // 2
+        return total - sum(nums)
+
 # leetcode submit region end(Prohibit modification and deletion)

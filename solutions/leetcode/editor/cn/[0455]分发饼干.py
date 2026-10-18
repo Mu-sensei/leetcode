@@ -21,6 +21,7 @@
 # 注意：本题与 2410. 运动员和训练师的最大匹配数 题相同。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def findContentChildren(self, g, s):
         """
@@ -28,5 +29,13 @@ class Solution(object):
         :type s: List[int]
         :rtype: int
         """
-        
+        g.sort()
+        s.sort()
+        child = cookie = 0
+        while child < len(g) and cookie < len(s):
+            if s[cookie] >= g[child]:
+                child += 1
+            cookie += 1
+        return child
+
 # leetcode submit region end(Prohibit modification and deletion)

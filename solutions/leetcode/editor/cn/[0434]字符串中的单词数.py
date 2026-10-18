@@ -6,11 +6,21 @@
 # 解释: 这里的单词是指连续的不是空格的字符，所以 "Hello," 算作 1 个单词。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def countSegments(self, s):
         """
         :type s: str
         :rtype: int
         """
-        
+        count = 0
+        in_word = False
+        for char in s:
+            if char != ' ' and not in_word:
+                count += 1
+                in_word = True
+            elif char == ' ':
+                in_word = False
+        return count
+
 # leetcode submit region end(Prohibit modification and deletion)

@@ -14,6 +14,7 @@
 # 	s 和 t 只包含小写字母
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def findTheDifference(self, s, t):
         """
@@ -21,5 +22,13 @@ class Solution(object):
         :type t: str
         :rtype: str
         """
-        
+        sum_s = 0
+        sum_t = 0
+        for char in s:
+            sum_s += ord(char)
+        for char in t:
+            sum_t += ord(char)
+        diff = sum_t - sum_s
+        return chr(diff)
+
 # leetcode submit region end(Prohibit modification and deletion)

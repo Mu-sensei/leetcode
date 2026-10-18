@@ -21,11 +21,33 @@
 # 	words[i] 由英文字母（小写和大写字母）组成
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def findWords(self, words):
         """
         :type words: List[str]
         :rtype: List[str]
         """
+        line1 = "qwertyuiop"
+        line2 = "asdfghjkl"
+        line3 = "zxcvbnm"
+        res = []
         
+        for word in words:
+            lower_word = word.lower()
+            if lower_word[0] in line1:
+                curr_line = line1
+            elif lower_word[0] in line2:
+                curr_line = line2
+            else:
+                curr_line = line3
+            valid = True
+            for char in lower_word:
+                if char not in curr_line:
+                    valid = False
+                    break
+            if valid:
+                res.append(word)
+        return res
+
 # leetcode submit region end(Prohibit modification and deletion)

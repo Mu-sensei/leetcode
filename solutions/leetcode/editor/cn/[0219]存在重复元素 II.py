@@ -14,6 +14,7 @@
 # 	0 <= k <= 105
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def containsNearbyDuplicate(self, nums, k):
         """
@@ -21,5 +22,12 @@ class Solution(object):
         :type k: int
         :rtype: bool
         """
-        
+        index_map = {}
+        for i, num in enumerate(nums):
+            if num in index_map:
+                if i - index_map[num] <= k:
+                    return True
+            index_map[num] = i
+        return False
+
 # leetcode submit region end(Prohibit modification and deletion)

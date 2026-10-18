@@ -18,11 +18,25 @@
 # 	grid[i][j] 为 0 或 1
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def islandPerimeter(self, grid):
         """
         :type grid: List[List[int]]
         :rtype: int
         """
-        
+        perimeter = 0
+        rows = len(grid)
+        cols = len(grid[0]) if rows > 0 else 0
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == 1:
+                    current = 4
+                    if i > 0 and grid[i-1][j] == 1:
+                        current -= 2
+                    if j > 0 and grid[i][j-1] == 1:
+                        current -= 2
+                    perimeter += current
+        return perimeter
+
 # leetcode submit region end(Prohibit modification and deletion)

@@ -22,12 +22,45 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution(object):
-    def addTwoNumbers(self, l1, l2):
-        """
-        :type l1: Optional[ListNode]
-        :type l2: Optional[ListNode]
-        :rtype: Optional[ListNode]
-        """
-        
+
+# 原始提交语言: C++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* dummy = new ListNode(0); // 哑节点，简化操作
+    ListNode* current = dummy;
+    int carry = 0; // 进位
+
+    while (l1 != nullptr || l2 != nullptr || carry != 0) {
+        int sum = carry;
+        if (l1 != nullptr) {
+            sum += l1->val;
+            l1 = l1->next;
+        }
+        if (l2 != nullptr) {
+            sum += l2->val;
+            l2 = l2->next;
+        }
+
+        carry = sum / 10; // 计算进位
+        current->next = new ListNode(sum % 10); // 创建新节点存储当前位的值
+        current = current->next;
+    }
+
+    ListNode* result = dummy->next;
+    delete dummy; 
+    return result;
+    }
+};
+
 # leetcode submit region end(Prohibit modification and deletion)

@@ -9,11 +9,25 @@
 # 	-107 <= num <= 107
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def convertToBase7(self, num):
         """
         :type num: int
         :rtype: str
         """
-        
+        if num == 0:
+            return "0"
+        res = []
+        is_negative = False
+        if num < 0:
+            is_negative = True
+            num = -num
+        while num:
+            res.append(str(num % 7))
+            num //= 7
+        if is_negative:
+            res.append('-')
+        return ''.join(reversed(res))
+
 # leetcode submit region end(Prohibit modification and deletion)

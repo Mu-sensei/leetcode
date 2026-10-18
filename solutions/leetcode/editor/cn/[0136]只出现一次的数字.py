@@ -15,11 +15,16 @@
 # 	除了某个元素只出现一次以外，其余每个元素均出现两次。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def singleNumber(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        
+        result = 0
+        for num in nums:
+            result ^= num
+        return result
+
 # leetcode submit region end(Prohibit modification and deletion)

@@ -24,11 +24,21 @@
 # 	1 31 - 1
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def convertToTitle(self, columnNumber):
         """
         :type columnNumber: int
         :rtype: str
         """
-        
+        result = ""
+        while columnNumber > 0:
+            remainder = columnNumber % 26
+            if remainder == 0:
+                remainder = 26
+                columnNumber -= 1
+            result = chr(ord('A') + remainder - 1) + result
+            columnNumber //= 26
+        return result
+
 # leetcode submit region end(Prohibit modification and deletion)

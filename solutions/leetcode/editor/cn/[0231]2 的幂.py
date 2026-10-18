@@ -16,11 +16,17 @@
 # 进阶：你能够不使用循环/递归解决此问题吗？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def isPowerOfTwo(self, n):
         """
         :type n: int
         :rtype: bool
         """
-        
+        if n <= 0:
+            return False
+        while n % 2 == 0:
+            n = n // 2
+        return n == 1
+
 # leetcode submit region end(Prohibit modification and deletion)

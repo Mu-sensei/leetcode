@@ -26,6 +26,7 @@
 # 进阶：你可以设计实现一个时间复杂度为 O(m + n) 的算法解决此问题吗？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def merge(self, nums1, m, nums2, n):
         """
@@ -35,5 +36,19 @@ class Solution(object):
         :type n: int
         :rtype: None Do not return anything, modify nums1 in-place instead.
         """
-        
+        p1 = m - 1
+        p2 = n - 1
+        p = m + n - 1
+        while p1 >= 0 and p2 >= 0:
+            if nums1[p1] >= nums2[p2]:
+                nums1[p] = nums1[p1]
+                p1 -= 1
+            else:
+                nums1[p] = nums2[p2]
+                p2 -= 1
+            p -= 1
+        # 如果 nums2 中还有元素未合并
+        if p2 >= 0:
+            nums1[:p2 + 1] = nums2[:p2 + 1]
+
 # leetcode submit region end(Prohibit modification and deletion)

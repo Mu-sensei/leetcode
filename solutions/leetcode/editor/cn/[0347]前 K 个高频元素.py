@@ -16,6 +16,7 @@
 # 进阶：你所设计算法的时间复杂度 必须 优于 O(n log n) ，其中 n 是数组大小。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def topKFrequent(self, nums, k):
         """
@@ -23,5 +24,15 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
+        freq_map = {}
+        for num in nums:
+            if num in freq_map:
+                freq_map[num] += 1
+            else:
+                freq_map[num] = 1
+        result = [item[0] for item in sorted(freq_map.items(), key=lambda x: x[1], reverse=True)[:k]]
         
+        return result
+        
+
 # leetcode submit region end(Prohibit modification and deletion)

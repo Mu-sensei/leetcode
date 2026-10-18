@@ -23,6 +23,7 @@
 # 进阶：你可以设计一个时间复杂度为 O(nums1.length + nums2.length) 的解决方案吗？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def nextGreaterElement(self, nums1, nums2):
         """
@@ -30,5 +31,17 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: List[int]
         """
-        
+        ans = []
+        for num in nums1:
+            j = nums2.index(num)
+            found = False
+            for i in range(j + 1, len(nums2)):
+                if nums2[i] > num:
+                    ans.append(nums2[i])
+                    found = True
+                    break
+            if not found:
+                ans.append(-1)
+        return ans
+
 # leetcode submit region end(Prohibit modification and deletion)

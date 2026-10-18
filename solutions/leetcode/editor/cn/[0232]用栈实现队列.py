@@ -28,35 +28,43 @@
 # 	你能否实现每个操作均摊时间复杂度为 O(1) 的队列？换句话说，执行 n 个操作的总时间复杂度为 O(n) ，即使其中一个操作可能花费较长时间。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class MyQueue(object):
 
     def __init__(self):
-        
+        self.stack_in = []
+        self.stack_out = []
 
     def push(self, x):
         """
         :type x: int
         :rtype: None
         """
-        
+        self.stack_in.append(x)
 
     def pop(self):
         """
         :rtype: int
         """
-        
+        if not self.stack_out:
+            while self.stack_in:
+                self.stack_out.append(self.stack_in.pop())
+        return self.stack_out.pop()
 
     def peek(self):
         """
         :rtype: int
         """
-        
+        if not self.stack_out:
+            while self.stack_in:
+                self.stack_out.append(self.stack_in.pop())
+        return self.stack_out[-1]
 
     def empty(self):
         """
         :rtype: bool
         """
-        
+        return not self.stack_in and not self.stack_out
 
 
 # Your MyQueue object will be instantiated and called as such:
@@ -65,4 +73,5 @@ class MyQueue(object):
 # param_2 = obj.pop()
 # param_3 = obj.peek()
 # param_4 = obj.empty()
+
 # leetcode submit region end(Prohibit modification and deletion)

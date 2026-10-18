@@ -27,35 +27,48 @@
 # 进阶：你能否仅用一个队列来实现栈。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class MyStack(object):
 
     def __init__(self):
-        
+        self.queue1 = deque()
+        self.queue2 = deque()
+
 
     def push(self, x):
         """
         :type x: int
         :rtype: None
         """
-        
+        self.queue1.append(x)
 
     def pop(self):
         """
         :rtype: int
         """
-        
+        while len(self.queue1) > 1:
+            self.queue2.append(self.queue1.popleft())
+        result = self.queue1.popleft()
+        self.queue1, self.queue2 = self.queue2, self.queue1
+        return result
 
     def top(self):
         """
         :rtype: int
         """
-        
+        while len(self.queue1) > 1:
+            self.queue2.append(self.queue1.popleft())
+        result = self.queue1[0]
+        self.queue2.append(self.queue1.popleft())
+        self.queue1, self.queue2 = self.queue2, self.queue1
+        return result
+
 
     def empty(self):
         """
         :rtype: bool
         """
-        
+        return len(self.queue1) == 0
 
 
 # Your MyStack object will be instantiated and called as such:
@@ -64,4 +77,5 @@ class MyStack(object):
 # param_2 = obj.pop()
 # param_3 = obj.top()
 # param_4 = obj.empty()
+
 # leetcode submit region end(Prohibit modification and deletion)

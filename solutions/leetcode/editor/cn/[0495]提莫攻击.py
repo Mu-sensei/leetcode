@@ -23,6 +23,7 @@
 # 	timeSeries 按 非递减 顺序排列
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def findPoisonedDuration(self, timeSeries, duration):
         """
@@ -30,5 +31,14 @@ class Solution(object):
         :type duration: int
         :rtype: int
         """
-        
+        n = len(timeSeries)
+        if n == 0:
+            return 0
+        total = 0
+        for i in range(n - 1):
+            gap = timeSeries[i+1] - timeSeries[i]
+            total += min(gap, duration)
+        total += duration
+        return total
+
 # leetcode submit region end(Prohibit modification and deletion)

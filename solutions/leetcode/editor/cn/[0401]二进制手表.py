@@ -15,11 +15,29 @@
 # 	0 <= turnedOn <= 10
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def readBinaryWatch(self, turnedOn):
         """
         :type turnedOn: int
         :rtype: List[str]
         """
-        
+        result = []
+        def countSetBits(n):
+            count = 0
+            while n > 0:
+                if n & 1:
+                    count += 1
+                n >>= 1
+            return count
+        for hour in range(12):
+                for minute in range(60):
+                    if countSetBits(hour) + countSetBits(minute) == turnedOn:
+                        if minute >= 10:
+                            time_str = str(hour) + ":" + str(minute)
+                        else:
+                            time_str = str(hour) + ":0" + str(minute)
+                        result.append(time_str)
+        return result
+
 # leetcode submit region end(Prohibit modification and deletion)

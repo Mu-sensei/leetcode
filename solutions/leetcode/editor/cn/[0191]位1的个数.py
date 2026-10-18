@@ -17,11 +17,17 @@
 # 	如果多次调用这个函数，你将如何优化你的算法？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def hammingWeight(self, n):
         """
         :type n: int
         :rtype: int
         """
-        
+        count = 0
+        while n:
+            count += n & 1
+            n >>= 1
+        return count
+
 # leetcode submit region end(Prohibit modification and deletion)

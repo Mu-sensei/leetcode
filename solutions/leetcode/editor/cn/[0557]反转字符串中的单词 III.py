@@ -13,11 +13,32 @@
 # 	s 中的所有单词都用一个空格隔开。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def reverseWords(self, s):
         """
         :type s: str
         :rtype: str
         """
+        s_list = list(s)
+        n = len(s_list)
+        start = 0
         
+        while start < n:
+            while start < n and s_list[start] == ' ':
+                start += 1
+            if start >= n:
+                break
+            end = start
+            while end < n and s_list[end] != ' ':
+                end += 1
+            left, right = start, end - 1
+            while left < right:
+                s_list[left], s_list[right] = s_list[right], s_list[left]
+                left += 1
+                right -= 1
+            start = end
+        
+        return ''.join(s_list)
+
 # leetcode submit region end(Prohibit modification and deletion)

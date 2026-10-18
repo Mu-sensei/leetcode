@@ -47,11 +47,16 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
-class Solution(object):
-    def isPalindrome(self, x):
-        """
-        :type x: int
-        :rtype: bool
-        """
-        
+
+# 原始提交语言: C
+bool isPalindrome(int x) {
+    if(x<0) return false;
+    long x1=x,y=0l;
+    while(x1){
+        y=y*10+x1%10;
+        x1/=10;
+    }
+    return x==y;
+}
+
 # leetcode submit region end(Prohibit modification and deletion)

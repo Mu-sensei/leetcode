@@ -23,11 +23,17 @@
 # 	columnTitle 在范围 ["A", "FXSHRXW"] 内
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def titleToNumber(self, columnTitle):
         """
         :type columnTitle: str
         :rtype: int
         """
-        
+        result = 0
+        for char in columnTitle:
+            value = ord(char) - ord('A') + 1
+            result = result * 26 + value
+        return result
+
 # leetcode submit region end(Prohibit modification and deletion)

@@ -16,6 +16,7 @@
 # 	1 <= bad <= n <= 231 - 1
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 # The isBadVersion API is already defined for you.
 # @param version, an integer
 # @return a bool
@@ -27,5 +28,13 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        
+        left, right = 1, n
+        while left < right:
+            mid = left + (right - left) // 2
+            if isBadVersion(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left
+
 # leetcode submit region end(Prohibit modification and deletion)

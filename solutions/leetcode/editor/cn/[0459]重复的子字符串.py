@@ -15,11 +15,14 @@
 # 	s 由小写英文字母组成
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def repeatedSubstringPattern(self, s):
         """
         :type s: str
         :rtype: bool
         """
-        
+        t = s + s
+        return s in t[1:-1]
+
 # leetcode submit region end(Prohibit modification and deletion)

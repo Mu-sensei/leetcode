@@ -23,11 +23,19 @@
 # 	很容易就能实现时间复杂度为 O(n log n) 的解决方案，你可以在线性时间复杂度 O(n) 内用一趟扫描解决此问题吗？
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def countBits(self, n):
         """
         :type n: int
         :rtype: List[int]
         """
-        
+        ans = [0] * (n + 1)
+        for i in range(1, n + 1):
+            j = 1
+            while j * 2 <= i:
+                j *= 2
+            ans[i] = ans[i - j] + 1
+        return ans
+
 # leetcode submit region end(Prohibit modification and deletion)

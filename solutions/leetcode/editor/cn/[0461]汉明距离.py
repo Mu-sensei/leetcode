@@ -16,6 +16,7 @@
 # 注意：本题与 2220. 转换数字的最少位翻转次数 相同。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def hammingDistance(self, x, y):
         """
@@ -23,5 +24,12 @@ class Solution(object):
         :type y: int
         :rtype: int
         """
-        
+        xor_result = x ^ y
+        count = 0
+        while xor_result > 0:
+            if xor_result & 1:
+                count += 1
+            xor_result >>= 1
+        return count
+
 # leetcode submit region end(Prohibit modification and deletion)

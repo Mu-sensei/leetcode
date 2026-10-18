@@ -13,6 +13,7 @@
 # 	haystack 和 needle 仅由小写英文字符组成
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def strStr(self, haystack, needle):
         """
@@ -20,5 +21,6 @@ class Solution(object):
         :type needle: str
         :rtype: int
         """
-        
+        return haystack.find(needle)
+
 # leetcode submit region end(Prohibit modification and deletion)

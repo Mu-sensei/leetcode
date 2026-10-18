@@ -17,11 +17,18 @@
 # 	1 <= n <= 45
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def climbStairs(self, n):
         """
         :type n: int
         :rtype: int
         """
-        
+        if n == 1:
+            return 1
+        a, b = 1, 2
+        for i in range(3, n + 1):
+            a, b = b, a + b
+        return b
+
 # leetcode submit region end(Prohibit modification and deletion)

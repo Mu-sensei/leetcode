@@ -12,11 +12,19 @@
 # 进阶：你能在不使用额外空间且时间复杂度为 O(n) 的情况下解决这个问题吗? 你可以假定返回的数组不算在额外空间内。
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def findDisappearedNumbers(self, nums):
         """
         :type nums: List[int]
         :rtype: List[int]
         """
-        
+        n = len(nums)
+        num_set = set(nums)
+        result = []
+        for i in range(1, n + 1):
+            if i not in num_set:
+                result.append(i)
+        return result
+
 # leetcode submit region end(Prohibit modification and deletion)

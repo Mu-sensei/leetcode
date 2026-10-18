@@ -22,11 +22,13 @@
 # 	1 <= n <= 231 - 1
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution(object):
     def canWinNim(self, n):
         """
         :type n: int
         :rtype: bool
         """
-        
+        return n % 4 != 0
+
 # leetcode submit region end(Prohibit modification and deletion)
