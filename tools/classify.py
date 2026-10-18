@@ -240,8 +240,9 @@ def main():
             base[fid] = (aws + timedelta(days=i % 7), fid in matched)
 
     # 状态覆盖（稳定）
+    seeded = os.path.exists(STATE_FILE)   # 是否已有历史播种（决定“新题”判定）
     state = {}
-    if os.path.exists(STATE_FILE):
+    if seeded:
         try:
             state = json.load(open(STATE_FILE))
         except Exception:
@@ -255,17 +256,17 @@ def main():
             d, real = base[fid]
             final[fid] = (d, real, False)
 
-    # 新增题（本地有，但不在 base/state）：归入当前周，平摊到当周各天
+    # 新增题覆盖：本地有、不在历史状态、且无真实AC时间 → 归入“当前周”（本周新题）
+    # 仅当已完成首次播种(seeded)后才生效，避免把老题误判为新题
     new_counter = 0
-    for fid in sorted(loc):
-        if fid in EXCLUDE or fid in final:
-            continue
-        if fid in matched:
-            final[fid] = (real_date[fid], True, True)
-        else:
-            ws = wstart(TODAY)
-            final[fid] = (ws + timedelta(days=new_counter % 7), False, True)
-            new_counter += 1
+    if seeded:
+        for fid in sorted(loc):
+            if fid in EXCLUDE or str(fid) in state or fid in matched:
+                continue
+            if fid in final:
+                ws = wstart(TODAY)
+                final[fid] = (ws + timedelta(days=new_counter % 7), False, True)
+                new_counter += 1
 
     # 保存状态
     os.makedirs(CACHE_DIR, exist_ok=True)
