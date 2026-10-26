@@ -4,6 +4,8 @@
   "title": "杨辉三角 II",
   "method": "getRow",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "rowIndex",

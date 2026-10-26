@@ -4,6 +4,8 @@
   "title": "多数元素",
   "method": "majorityElement",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums",

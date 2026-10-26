@@ -4,6 +4,8 @@
   "title": "找不同",
   "method": "findTheDifference",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

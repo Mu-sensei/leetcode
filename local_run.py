@@ -17,10 +17,11 @@
     1. 在 solutions/leetcode/editor/cn/ 里按题号找到 [NNNN]标题.{py,c,cpp}
     2. Python 题(.py): 动态加载 Solution 类, 用官方用例跑并比对官方期望输出
     3. C/C++ 题(.c/.cpp): 调 gcc/g++ 编译, 运行其自带 main() 的 PASS/FAIL 断言
+    4. SQL 题(数据库题): 用 PostgreSQL(优先) / SQLite(兜底) 建表、灌官方数据、
+       执行你写的 SQL, 再与官方结果表比对（写的 MySQL 方言会自动适配）
 
 说明:
     - 如果某题还是空壳(stub, 方法体没实现), 会提示先填解法。
-    - SQL 类题目(文件里是 MySQL 语句)无法用本脚本跑, 请用 MySQL 验证。
     - 少数题正文没写期望输出, 这时只执行并打印结果, 不判对错。
 """
 
@@ -146,6 +147,38 @@ def find_file(pid):
     return None
 
 
+def prelude_symbols():
+    """LeetCode 环境默认可用的常用符号。
+
+    很多解法直接就写 deque / Counter / inf 而不 import（在网页上能跑，本地会 NameError），
+    这里提前塞进模块命名空间；如果解法自己 import 了，会以它自己的为准。
+    """
+    import bisect
+    import collections
+    import functools
+    import heapq
+    import itertools
+    import math
+    import typing
+
+    syms = {
+        "ListNode": ListNode, "TreeNode": TreeNode,
+        "deque": collections.deque, "defaultdict": collections.defaultdict,
+        "Counter": collections.Counter, "OrderedDict": collections.OrderedDict,
+        "heapq": heapq, "heappush": heapq.heappush, "heappop": heapq.heappop,
+        "heapify": heapq.heapify, "nlargest": heapq.nlargest, "nsmallest": heapq.nsmallest,
+        "bisect": bisect, "bisect_left": bisect.bisect_left,
+        "bisect_right": bisect.bisect_right, "insort": bisect.insort,
+        "math": math, "inf": math.inf, "sqrt": math.sqrt,
+        "floor": math.floor, "ceil": math.ceil,
+        "functools": functools, "reduce": functools.reduce, "lru_cache": functools.lru_cache,
+        "itertools": itertools, "collections": collections, "typing": typing,
+    }
+    for n in ("List", "Dict", "Set", "Tuple", "Optional"):
+        syms[n] = getattr(typing, n)
+    return syms
+
+
 def load_solution(path):
     """加载解法文件。优先 Solution；设计类题目(225/232/303 等)会自动找主类。
 
@@ -153,8 +186,7 @@ def load_solution(path):
     """
     spec = importlib.util.spec_from_file_location("leetcode_sol", path)
     mod = importlib.util.module_from_spec(spec)
-    mod.ListNode = ListNode
-    mod.TreeNode = TreeNode
+    mod.__dict__.update(prelude_symbols())
     spec.loader.exec_module(mod)
     if hasattr(mod, "Solution"):
         return mod.Solution
@@ -207,31 +239,70 @@ def to_listnode_with_cycle(xs, pos):
     return head
 
 
+# 官方 metaData 里混进来的「构造用参数」: 只用于生成测试数据, 不该传给解法函数
+CONSTRUCT_PARAMS = {"pos", "intersectVal", "skipA", "skipB", "pick", "bad"}
+
+
+def _nodes(xs):
+    """数组 -> ListNode 列表(依次相连)。"""
+    nodes = [ListNode(x) for x in (xs or [])]
+    for i in range(len(nodes) - 1):
+        nodes[i].next = nodes[i + 1]
+    return nodes
+
+
+def build_intersect(a_vals, b_vals, skip_a, skip_b):
+    """按官方的 skipA/skipB 让两个链表真正相交(共用同一段节点)。"""
+    na, nb = _nodes(a_vals), _nodes(b_vals)
+    if not na:
+        return (None, nb[0] if nb else None)
+    if skip_a >= len(na):
+        return (na[0], nb[0] if nb else None)
+    if skip_b == 0:
+        hb = na[skip_a]
+    elif nb:
+        for i in range(min(skip_b, len(nb)) - 1):
+            nb[i].next = nb[i + 1]
+        if skip_b - 1 < len(nb):
+            nb[skip_b - 1].next = na[skip_a]
+        hb = nb[0]
+    else:
+        hb = None
+    return (na[0], hb)
+
+
 def build_args(mode, args, params=None):
     """把官方用例的输入转成 Python 实参。
 
-    params 是官方 metaData 的参数列表, 用来识别 pos 这类"构造用参数"——
-    它只参与构造测试数据(环形链表), 不该被当作函数入参。
+    params 是官方 metaData 的参数列表, 用来识别 pos/skipA/bad 这类"构造用参数"——
+    它们只参与构造测试数据(环形链表、相交链表、猜数字的答案), 不该被当作函数入参。
     """
     params = params or []
-    pos_val = None
-    for i, p in enumerate(params):
-        if p.get("name") == "pos" and i < len(args):
-            pos_val = args[i]
-            break
+    named, real = {}, list(args)
+    if len(params) == len(args):
+        for p, a in zip(params, args):
+            named[p.get("name")] = a
+        real = [a for p, a in zip(params, args)
+                if p.get("name") not in CONSTRUCT_PARAMS]
 
     if mode == "listnode":
+        iv, sa, sb = named.get("intersectVal"), named.get("skipA"), named.get("skipB")
+        lists = [a for a in real if isinstance(a, list)]
+        if iv and sa is not None and sb is not None and len(lists) >= 2:
+            ha, hb = build_intersect(lists[0], lists[1], sa, sb)
+            return (ha, hb) + tuple(a for a in real if not isinstance(a, list))
+        pos_val = named.get("pos")
         out = []
-        for i, a in enumerate(args):
+        for a in real:
             if isinstance(a, list):
                 out.append(to_listnode_with_cycle(a, pos_val)
-                           if (i == 0 and pos_val is not None) else to_listnode(a))
+                           if pos_val is not None else to_listnode(a))
             else:
                 out.append(a)
         return tuple(out)
     if mode == "treenode":
-        return tuple(to_treenode(a) if isinstance(a, list) else a for a in args)
-    return args
+        return tuple(to_treenode(a) if isinstance(a, list) else a for a in real)
+    return tuple(real)
 
 
 def norm(mode, val):
@@ -243,6 +314,54 @@ def norm(mode, val):
     if mode in ("listnode", "treenode") and val is None:
         return []
     return val
+
+
+def _tree_vals(xs):
+    return [x for x in (xs or []) if x is not None]
+
+
+def _inorder(xs):
+    out = []
+
+    def dfs(n):
+        if not n:
+            return
+        dfs(n.left)
+        out.append(n.val)
+        dfs(n.right)
+
+    dfs(to_treenode(xs))
+    return out
+
+
+def _height(node):
+    return 0 if not node else 1 + max(_height(node.left), _height(node.right))
+
+
+def _balanced(node):
+    if not node:
+        return True
+    if abs(_height(node.left) - _height(node.right)) > 1:
+        return False
+    return _balanced(node.left) and _balanced(node.right)
+
+
+def tree_equivalent(got, expected):
+    """树结构的答案常常不唯一(如 108 有序数组转二叉搜索树)。
+
+    严格相等比不出来时, 退一步做语义校验:
+    节点值集合一致 + 中序遍历有序(说明是合法 BST) + 高度平衡。
+    通过返回说明文字, 不通过返回 None。
+    """
+    if sorted(map(str, _tree_vals(got))) != sorted(map(str, _tree_vals(expected))):
+        return None
+    io = _inorder(got)
+    if io != sorted(io):
+        return None
+    root = to_treenode(got)
+    if root and not _balanced(root):
+        return None
+    return "值集合一致 / 中序有序(BST) / 高度平衡"
 
 
 def pick_method(Solution, preferred):
@@ -303,11 +422,17 @@ def run(pid):
         print(f"    或者一步到位  : python3 local_run.py {pid} --fetch")
         return False
 
+    info = load_official(pid) or {}
+    if mode == "sql":
+        return run_sql_problem(pid, path, info)
+
     print(f"[*] 加载: {os.path.basename(path)}")
     print(f"[*] 用例: {source}（{len(cases)} 组, mode={mode}）")
-    info = load_official(pid) or {}
     params = info.get("params") or []
     ret_void = (info.get("return_type") == "void")
+    # 入参和返回值可能是不同形态(如 108 题: 入参是数组、返回是树), 所以模式分开取
+    in_mode = info.get("in_mode") or mode
+    out_mode = info.get("out_mode") or mode
 
     try:
         Solution = load_solution(path)
@@ -324,23 +449,30 @@ def run(pid):
         print("[!] 解法里没有任何方法(可能是空壳)。")
         return False
 
+    if mode == "design":
+        return run_design_problem(pid, info, Solution)
+
     all_ok = True
     for i, (args, expected) in enumerate(cases, 1):
         try:
             inst = Solution()
-            # 交互题(如第374题): 官方运行时提供 guess(num), 这里用 pick 模拟。
-            # 解法是把它当全局函数调用的, 所以既要挂到实例上, 也要塞进模块全局。
+            # 交互题: 官方运行时会提供 guess(num) / isBadVersion(version),
+            # 这里用官方给的 pick / bad 参数模拟出来。
+            # 解法多半把它们当全局函数调用, 所以既要挂到实例上, 也要塞进模块全局。
             for pi, p in enumerate(params):   # 用 pi, 免得盖掉外层用例序号 i
-                if p.get("name") == "pick" and pi < len(args):
-                    pick = args[pi]
+                pname = p.get("name")
+                if pname in ("pick", "bad") and pi < len(args):
+                    secret = args[pi]
 
-                    def _guess(num, _p=pick):
-                        return -1 if num > _p else (1 if num < _p else 0)
+                    def _mock(v, _s=secret):
+                        if pname == "pick":
+                            return -1 if v > _s else (1 if v < _s else 0)
+                        return v >= _s
 
-                    inst.guess = _guess
+                    setattr(inst, "guess" if pname == "pick" else "isBadVersion", _mock)
                     g = getattr(getattr(Solution, fname, None), "__globals__", None)
                     if isinstance(g, dict):
-                        g["guess"] = _guess
+                        g["guess" if pname == "pick" else "isBadVersion"] = _mock
             fn = getattr(inst, fname)
             # 只传函数真正接受的参数个数: pos/pick 等只是构造测试数据用的, 不该传入
             try:
@@ -349,13 +481,14 @@ def run(pid):
                              if p.kind in (p.POSITIONAL_ONLY, p.POSITIONAL_OR_KEYWORD)])
             except (TypeError, ValueError):
                 n_acc = len(args)
-            call_args = build_args(mode, args, params)[:max(n_acc, 0)]
-            got = fn(*call_args)
+            call_args = build_args(in_mode, args, params)[:max(n_acc, 0)]
+            ret = fn(*call_args)
+            arr = call_args[0] if call_args else None
             if ret_void:
                 # 原地修改类题目(如第88题): 答案在被改过的第一个入参里
-                got = norm(mode, call_args[0] if call_args else None)
+                got = norm(out_mode, arr)
             else:
-                got = norm(mode, got)
+                got = norm(out_mode, ret)
         except Exception as e:
             print(f"  用例 {i}: 执行出错 -> {type(e).__name__}: {e}")
             all_ok = False
@@ -365,8 +498,36 @@ def run(pid):
             print(f"  用例 {i}: ➖ 无官方期望输出, 仅执行 | 输入={args} 得到={got}")
             continue
 
+        # 26/27 这类: 官方期望是 "k, nums = [...]" —— 既看返回值, 也看原地改后的数组
+        if isinstance(expected, dict) and "k" in expected:
+            k = expected["k"]
+            want = expected.get("nums") or []
+            head = arr[:k] if isinstance(arr, list) else []
+            ok = (got == k) and sorted(map(str, head)) == sorted(map(str, want))
+            note = "（返回值 + 原地数组）"
+            all_ok = all_ok and ok
+            print(f"  用例 {i}: {'✅' if ok else '❌'} 期望 k={k}, nums={want} "
+                  f"实际 k={got}, nums={head}{note}")
+            continue
+
+        # 相交链表: 官方期望写的是交点的值, 或 "No intersection"
+        if isinstance(expected, dict) and "intersect" in expected:
+            ok = not got          # 不相交时解法应返回 None / []
+            all_ok = all_ok and ok
+            print(f"  用例 {i}: {'✅' if ok else '❌'} 期望无交点 实际={got or 'None'}")
+            continue
+
         ok = (got == expected)
         note = ""
+        if not ok and isinstance(expected, int) and isinstance(got, list) and got:
+            if got[0] == expected:
+                ok, note = True, "（交点值一致）"
+        # 树结构答案可能不唯一(如 108 有序数组转 BST): 严格不等时做语义校验
+        if not ok and out_mode == "treenode" and isinstance(got, list) \
+                and isinstance(expected, list):
+            why = tree_equivalent(got, expected)
+            if why:
+                ok, note = True, "（结构不唯一, 已校验: %s）" % why
         if not ok and isinstance(got, list) and isinstance(expected, list):
             # 交集/组合这类题答案顺序无所谓, 排序后一致也算对
             try:
@@ -381,6 +542,92 @@ def run(pid):
         print(f"[✓] 第 {pid} 题全部通过")
     else:
         print(f"[✗] 第 {pid} 题有用例没过(或仍是空壳)")
+    return all_ok
+
+
+def run_design_problem(pid, info, Solution):
+    """设计类题目(225 用队列实现栈、303 区域和检索 等):
+
+    官方给的是「操作序列 + 参数序列」, 例如
+        ["MyStack","push","top","pop"] / [[],[1],[],[]]
+    期望输出是 ["null","null","1","1"]。这里按顺序一步步调用再比对整条序列。
+    """
+    cases = info.get("cases") or []
+    all_ok = True
+    for i, case in enumerate(cases, 1):
+        inp = case.get("input") or []
+        ops = inp[0] if inp else []
+        op_args = inp[1] if len(inp) > 1 else []
+        expected = case.get("output")
+        got, inst = [], None
+        try:
+            for op, a in zip(ops, op_args or []):
+                a = list(a) if isinstance(a, (list, tuple)) else ([a] if a is not None else [])
+                if inst is None:
+                    inst = Solution(*a)        # 第一个操作就是构造
+                    got.append(None)
+                    continue
+                fn = getattr(inst, op, None)
+                if fn is None:
+                    print(f"  用例 {i}: [!] 类里找不到方法 {op}")
+                    got.append(None)
+                    continue
+                got.append(fn(*a))
+        except Exception as e:
+            print(f"  用例 {i}: 执行出错 -> {type(e).__name__}: {e}")
+            all_ok = False
+            continue
+
+        if expected is None:
+            print(f"  用例 {i}: ➖ 无官方期望输出, 仅执行 | 得到={got}")
+            continue
+        ok = [str(x) for x in got] == [str(x) for x in expected]
+        all_ok = all_ok and ok
+        if ok:
+            print(f"  用例 {i}: ✅ 操作序列 {len(ops)} 步, 输出与官方一致")
+        else:
+            print(f"  用例 {i}: ❌ 操作={ops}")
+            print(f"     期望: {expected}")
+            print(f"     实际: {got}")
+    if all_ok:
+        print(f"[✓] 第 {pid} 题通过（设计类, 已按操作序列执行）")
+    else:
+        print(f"[✗] 第 {pid} 题结果不符")
+    return all_ok
+
+
+def run_sql_problem(pid, path, info):
+    """SQL(数据库)类题目: 用 PostgreSQL(优先)/SQLite(兜底) 真跑一遍并比对官方结果表。"""
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    try:
+        import sql_runner
+    except Exception as e:
+        print(f"[!] 加载 SQL 引擎失败: {e}")
+        return False
+
+    cases = info.get("cases") or []
+    print(f"[*] 加载: {os.path.basename(path)}")
+    print(f"[*] 用例: 官方 SQL 用例（{len(cases)} 组, "
+          f"引擎={'PostgreSQL' if sql_runner.pg_available() else 'SQLite'}）")
+
+    all_ok = True
+    for i, case in enumerate(cases, 1):
+        ok, got, used = sql_runner.run_case(pid, path, info, case)
+        exp = case.get("output") or {}
+        exp_rows = exp.get("rows") if isinstance(exp, dict) else None
+        all_ok = all_ok and ok
+        if exp_rows is None:
+            continue
+        if ok:
+            print("  用例 %d: ✅ [%s] 结果 %d 行, 与官方一致" % (i, used, len(got or [])))
+        else:
+            print("  用例 %d: ❌ [%s]" % (i, used))
+            print("     期望: %s" % exp_rows)
+            print("     实际: %s" % got)
+    if all_ok:
+        print(f"[✓] 第 {pid} 题通过（SQL 已执行）")
+    else:
+        print(f"[✗] 第 {pid} 题结果不符")
     return all_ok
 
 

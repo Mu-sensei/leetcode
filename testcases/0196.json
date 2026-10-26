@@ -3,7 +3,9 @@
   "slug": "delete-duplicate-emails",
   "title": "删除重复的电子邮箱",
   "method": "delete_duplicate_emails",
-  "mode": "plain",
+  "mode": "sql",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [],
   "return_type": null,
   "cases": [
@@ -34,7 +36,25 @@
           }
         }
       ],
-      "output": "+----+------------------+"
+      "output": {
+        "columns": [
+          "id",
+          "email"
+        ],
+        "rows": [
+          [
+            1,
+            "john@example.com"
+          ],
+          [
+            2,
+            "bob@example.com"
+          ]
+        ]
+      }
     }
+  ],
+  "ddl": [
+    "Create table If Not Exists Person (Id int, Email varchar(255))"
   ]
 }

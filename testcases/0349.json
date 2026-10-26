@@ -4,6 +4,8 @@
   "title": "两个数组的交集",
   "method": "intersection",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums1",

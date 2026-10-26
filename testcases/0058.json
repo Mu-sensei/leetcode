@@ -4,6 +4,8 @@
   "title": "最后一个单词的长度",
   "method": "lengthOfLastWord",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

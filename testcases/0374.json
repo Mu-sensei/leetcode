@@ -4,6 +4,8 @@
   "title": "猜数字大小",
   "method": "guessNumber",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "n",

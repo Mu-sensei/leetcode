@@ -4,6 +4,8 @@
   "title": "反转字符串中的单词 III",
   "method": "reverseWords",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

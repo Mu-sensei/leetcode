@@ -4,6 +4,8 @@
   "title": "回文数",
   "method": "isPalindrome",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "x",

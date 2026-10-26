@@ -4,6 +4,8 @@
   "title": "丢失的数字",
   "method": "missingNumber",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums",

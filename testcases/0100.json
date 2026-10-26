@@ -4,6 +4,8 @@
   "title": "相同的树",
   "method": "isSameTree",
   "mode": "treenode",
+  "in_mode": "treenode",
+  "out_mode": "plain",
   "params": [
     {
       "name": "p",

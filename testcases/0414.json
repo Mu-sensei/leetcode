@@ -4,6 +4,8 @@
   "title": "第三大的数",
   "method": "thirdMax",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums",

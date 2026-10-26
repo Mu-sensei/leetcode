@@ -4,6 +4,8 @@
   "title": "赎金信",
   "method": "canConstruct",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "ransomNote",

@@ -4,6 +4,8 @@
   "title": "重复的子字符串",
   "method": "repeatedSubstringPattern",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

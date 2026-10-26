@@ -4,6 +4,8 @@
   "title": "反转字符串中的元音字母",
   "method": "reverseVowels",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

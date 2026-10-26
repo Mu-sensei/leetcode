@@ -3,7 +3,9 @@
   "slug": "implement-queue-using-stacks",
   "title": "用栈实现队列",
   "method": "",
-  "mode": "plain",
+  "mode": "design",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [],
   "return_type": "boolean",
   "cases": [
@@ -16,12 +18,7 @@
           "peek",
           "pop",
           "empty"
-        ]
-      ],
-      "output": null
-    },
-    {
-      "input": [
+        ],
         [
           [],
           [
@@ -35,7 +32,14 @@
           []
         ]
       ],
-      "output": null
+      "output": [
+        null,
+        null,
+        null,
+        1,
+        1,
+        false
+      ]
     }
   ]
 }

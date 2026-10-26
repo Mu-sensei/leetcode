@@ -4,6 +4,8 @@
   "title": "最长公共前缀",
   "method": "longestCommonPrefix",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "strs",

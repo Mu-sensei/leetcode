@@ -4,6 +4,8 @@
   "title": "验证回文串",
   "method": "isPalindrome",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

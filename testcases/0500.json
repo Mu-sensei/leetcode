@@ -4,6 +4,8 @@
   "title": "键盘行",
   "method": "findWords",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "words",

@@ -4,6 +4,8 @@
   "title": "有效的字母异位词",
   "method": "isAnagram",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

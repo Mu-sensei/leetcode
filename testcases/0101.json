@@ -4,6 +4,8 @@
   "title": "对称二叉树",
   "method": "isSymmetric",
   "mode": "treenode",
+  "in_mode": "treenode",
+  "out_mode": "plain",
   "params": [
     {
       "name": "root",

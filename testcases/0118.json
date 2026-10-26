@@ -4,6 +4,8 @@
   "title": "杨辉三角",
   "method": "generate",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "numRows",

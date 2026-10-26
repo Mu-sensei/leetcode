@@ -4,6 +4,8 @@
   "title": "爬楼梯",
   "method": "climbStairs",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "n",

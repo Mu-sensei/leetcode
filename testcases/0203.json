@@ -4,6 +4,8 @@
   "title": "移除链表元素",
   "method": "removeElements",
   "mode": "listnode",
+  "in_mode": "listnode",
+  "out_mode": "listnode",
   "params": [
     {
       "name": "head",

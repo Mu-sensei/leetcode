@@ -4,6 +4,8 @@
   "title": "二叉树的前序遍历",
   "method": "preorderTraversal",
   "mode": "treenode",
+  "in_mode": "treenode",
+  "out_mode": "plain",
   "params": [
     {
       "name": "root",

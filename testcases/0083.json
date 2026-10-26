@@ -4,6 +4,8 @@
   "title": "删除排序链表中的重复元素",
   "method": "deleteDuplicates",
   "mode": "listnode",
+  "in_mode": "listnode",
+  "out_mode": "listnode",
   "params": [
     {
       "name": "head",

@@ -4,6 +4,8 @@
   "title": "密钥格式化",
   "method": "licenseKeyFormatting",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

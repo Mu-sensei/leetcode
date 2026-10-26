@@ -4,6 +4,8 @@
   "title": "排列硬币",
   "method": "arrangeCoins",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "n",

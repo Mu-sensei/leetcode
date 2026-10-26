@@ -4,6 +4,8 @@
   "title": "翻转二叉树",
   "method": "invertTree",
   "mode": "treenode",
+  "in_mode": "treenode",
+  "out_mode": "treenode",
   "params": [
     {
       "name": "root",

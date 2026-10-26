@@ -4,6 +4,8 @@
   "title": "判断子序列",
   "method": "isSubsequence",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

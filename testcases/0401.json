@@ -4,6 +4,8 @@
   "title": "二进制手表",
   "method": "readBinaryWatch",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "turnedOn",

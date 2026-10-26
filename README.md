@@ -67,7 +67,16 @@ python3 local_run.py 9 --list      # 只列出第 9 题的用例, 不执行
 python3 tools/fetch_testcases.py --all   # 一次性拉全部题目的官方用例
 ```
 
-> SQL 类题目（`[0175]`~`[0197]` 等 6 道）文件里是 **MySQL** 语句，无法用 Python 框架跑，请在 MySQL 环境验证。
+### SQL（数据库）类题目也能跑
+
+`[0175]`~`[0197]` 等 6 道数据库题同样支持：框架会用**官方建表语句**建表、灌入**官方示例数据**、执行你写的 SQL，再和官方结果表比对。
+
+| 引擎 | 说明 |
+|---|---|
+| **PostgreSQL**（优先） | 本机装了就用它，`brew install postgresql@17`；首次运行会自动 `initdb` 并在 5433 端口起一个专用实例 |
+| **SQLite**（兜底） | 没装 PostgreSQL 时自动回退，Python 标准库自带，零安装即可跑 |
+
+你写的 **MySQL 方言会自动适配**为目标引擎的语法（如 `DATE_ADD(...)`、`DELETE ... JOIN`、反引号等）。
 
 ---
 

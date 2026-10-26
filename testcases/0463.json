@@ -4,6 +4,8 @@
   "title": "岛屿的周长",
   "method": "islandPerimeter",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "grid",

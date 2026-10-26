@@ -3,7 +3,9 @@
   "slug": "combine-two-tables",
   "title": "组合两个表",
   "method": "combine_two_tables",
-  "mode": "plain",
+  "mode": "sql",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [],
   "return_type": null,
   "cases": [
@@ -53,7 +55,32 @@
           }
         }
       ],
-      "output": "+-----------+----------+---------------+----------+"
+      "output": {
+        "columns": [
+          "firstName",
+          "lastName",
+          "city",
+          "state"
+        ],
+        "rows": [
+          [
+            "Allen",
+            "Wang",
+            null,
+            null
+          ],
+          [
+            "Bob",
+            "Alice",
+            "New York City",
+            "New York"
+          ]
+        ]
+      }
     }
+  ],
+  "ddl": [
+    "Create table If Not Exists Person (personId int, firstName varchar(255), lastName varchar(255))",
+    "Create table If Not Exists Address (addressId int, personId int, city varchar(255), state varchar(255))"
   ]
 }

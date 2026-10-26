@@ -104,9 +104,25 @@ def parse_expected_outputs(content):
          <p><strong>Output:</strong> <code>[0,1]</code></p>
     """
     txt = strip_html(content)
+    lines = txt.split("\n")
     outs = []
-    for m in re.finditer(r"(?:Output|输出)\s*[：:]\s*(.+)", txt):
+    for idx, ln in enumerate(lines):
+        # 注意: 设计类题正文里是 "Output" 后直接换行给值, 没有冒号
+        m = re.match(r"\s*(?:Output|输出)\s*[：:]?\s*(.*)$", ln)
+        if not m:
+            continue
         val = m.group(1).strip()
+        if not val:
+            # 有些题 Output: 后面换行才给值(设计类题尤其常见)
+            k = idx + 1
+            while k < len(lines):
+                s = lines[k].strip()
+                if s:
+                    if re.match(r"(解释|Explanation|输入|Input|提示|注意|Note)", s):
+                        break
+                    val = s
+                    break
+                k += 1
         # 同一行若还跟着 Explanation/解释，截掉
         val = re.split(r"\s{2,}|Explanation|解释", val)[0].strip()
         if val:
@@ -114,17 +130,151 @@ def parse_expected_outputs(content):
     return outs
 
 
+def _sql_cell(v):
+    """表格单元格 -> Python 值。SQL 的 NULL 转 None, 数字转 int/float, 其余留字符串。"""
+    s = "" if v is None else str(v).strip()
+    if s.lower() in ("null", "none", ""):
+        return None
+    try:
+        return int(s)
+    except ValueError:
+        pass
+    try:
+        return float(s)
+    except ValueError:
+        pass
+    return s
+
+
+def parse_sql_tables(content):
+    """SQL 题专用: 官方输出是一张 ASCII 表格, 解析成 {"columns": [...], "rows": [[...]]}。
+
+    正文形如:
+        Output:
+        +-----------+----------+
+        | firstName | lastName |
+        +-----------+----------+
+        | Allen     | Wang     |
+        +-----------+----------+
+    表格里第一个 |...| 行是列名, 其余是数据行。
+    """
+    txt = strip_html(content)
+    lines = txt.split("\n")
+    tables = []
+    i = 0
+    while i < len(lines):
+        if not re.match(r"\s*(?:Output|输出)\s*[：:]", lines[i]):
+            i += 1
+            continue
+        # 从 Output 之后开始找表格顶边（遇到下一节标题就放弃）
+        j = i + 1
+        while j < len(lines) and not lines[j].strip().startswith("+"):
+            s = lines[j].strip()
+            if s and re.match(r"(解释|Explanation|示例|Example|提示|Constraints)", s):
+                break
+            j += 1
+        if j >= len(lines) or not lines[j].strip().startswith("+"):
+            i += 1
+            continue
+        bar_rows = []
+        k = j
+        while k < len(lines):
+            ln = lines[k].strip()
+            if ln.startswith("|"):
+                bar_rows.append([c.strip() for c in ln.strip("|").split("|")])
+            elif ln.startswith("+"):
+                pass
+            else:
+                break
+            k += 1
+        if len(bar_rows) >= 2:  # 至少要有列名 + 一行数据
+            tables.append({
+                "columns": bar_rows[0],
+                "rows": [[_sql_cell(c) for c in r] for r in bar_rows[1:]],
+            })
+        i = max(k, i + 1)
+    return tables
+
+
+def looks_like_ops(example):
+    """设计类题目(225/232/303 等): 官方给的是「操作序列 + 参数序列」两行。"""
+    lines = [l for l in (example or "").split("\n") if l.strip()]
+    # 第一行是操作名数组, 第二行必须是「参数数组的数组」(如 [[],[1],[2]])
+    # —— 只凭第一行判断会把 500(键盘行) 这类字符串数组题误判成设计类
+    return (len(lines) >= 2 and lines[0].strip().startswith('["')
+            and lines[1].strip().startswith("[["))
+
+
+def normalize_expected(val):
+    """把官方输出文本规整成可比对的值。
+
+    - "2, nums = [1,2,_]"          -> {"k": 2, "nums": [1, 2]}   (26/27 这类原地删除题)
+    - "Intersected at '8'"         -> 8                          (160 相交链表)
+    - "[null,null,null,2,2,false]" -> [None, None, None, 2, 2, False]
+    """
+    if not isinstance(val, str):
+        return val
+    s = val.strip()
+    m = re.match(r"^(\d+)\s*,\s*nums\s*=\s*(\[.*\])$", s)
+    if m:
+        nums = parse_literal(re.sub(r"\b_\b", "null", m.group(2)))
+        k = int(m.group(1))
+        return {"k": k, "nums": list(nums or [])[:k]}
+    m = re.match(r"^Intersected at\s*'?(\d+)'?", s)
+    if m:
+        return int(m.group(1))
+    if s.lower().startswith("no intersection"):
+        return {"intersect": None}      # 官方表示两个链表不相交
+    return parse_literal(s)
+
+
+def is_sql_question(meta):
+    """SQL 题: 没有 params, 但 metaData 里带各数据库的建表语句。"""
+    return (not meta.get("params")) and bool(meta.get("mysql"))
+
+
 def parse_literal(text):
     """把 '[2,7,11,15]' / '9' / 'true' / '"abc"' 这类字面量转成 Python 值。"""
     s = (text or "").strip()
     if not s:
         return None
+    # JSON 里的 true/false/null 在 Python 里是 True/False/None
+    py = re.sub(r"\btrue\b", "True", s)
+    py = re.sub(r"\bfalse\b", "False", py)
+    py = re.sub(r"\bnull\b", "None", py)
     for loader in (json.loads, ast.literal_eval):
         try:
             return loader(s)
         except Exception:
-            continue
-    return s
+            pass
+    try:
+        return ast.literal_eval(py)
+    except Exception:
+        return s
+
+
+def mode_of(type_str):
+    """参数/返回值的类型 -> 是否需要结构转换。"""
+    t = type_str or ""
+    if "TreeNode" in t:
+        return "treenode"
+    if "ListNode" in t:
+        return "listnode"
+    return "plain"
+
+
+def in_mode(meta):
+    """入参模式: 任一参数是链表/树, 就需要把数组转成结构。"""
+    for p in meta.get("params") or []:
+        m = mode_of(p.get("type"))
+        if m != "plain":
+            return m
+    return "plain"
+
+
+def out_mode(meta):
+    """返回值模式: 决定返回值要不要转回数组。"""
+    return mode_of((meta.get("return") or {}).get("type"))
 
 
 def split_cases(example_testcases, n_params):
@@ -163,23 +313,50 @@ def fetch_one(pid, slug):
     params = meta.get("params") or []
     n_params = max(len(params), 1)
 
-    inputs = split_cases(q.get("exampleTestcases"), n_params)
-    outputs = [parse_literal(o) for o in parse_expected_outputs(q.get("content"))]
+    example = q.get("exampleTestcases")
+    content = q.get("content")
+    sql_mode = is_sql_question(meta)
+    design = (not sql_mode) and looks_like_ops(example)
+
+    if sql_mode:
+        # SQL 题: 官方直接给了建表语句和整张数据表, 期望输出是一张结果表
+        try:
+            data_in = json.loads(example or "")
+            if not isinstance(data_in, dict):
+                data_in = None
+        except Exception:
+            data_in = None
+        inputs = [[data_in]] if data_in else split_cases(example, 1)
+        outputs = parse_sql_tables(content)
+    elif design:
+        # 设计类题: 官方给「操作序列」+「参数序列」两行, 作为一整组用例
+        lines = [l for l in (example or "").split("\n") if l.strip()]
+        inputs = [[parse_literal(l) for l in lines]]
+        outputs = [normalize_expected(o) for o in parse_expected_outputs(content)]
+    else:
+        inputs = split_cases(example, n_params)
+        outputs = [normalize_expected(o) for o in parse_expected_outputs(content)]
 
     cases = []
     for i, args in enumerate(inputs):
         cases.append({"input": args, "output": outputs[i] if i < len(outputs) else None})
 
-    return {
+    info = {
         "pid": int(pid),
         "slug": slug,
         "title": q.get("translatedTitle") or q.get("title") or "",
         "method": meta.get("name") or "",
-        "mode": guess_mode(meta),
+        "mode": "sql" if sql_mode else ("design" if design else in_mode(meta)),
+        # 入参/返回值可能一个是数组一个是结构, 所以模式分开存(如 108 入参数组、返回树)
+        "in_mode": "plain" if (sql_mode or design) else in_mode(meta),
+        "out_mode": out_mode(meta),
         "params": [{"name": p.get("name"), "type": p.get("type")} for p in params],
         "return_type": (meta.get("return") or {}).get("type"),
         "cases": cases,
     }
+    if sql_mode:
+        info["ddl"] = meta.get("mysql") or []   # 官方建表语句, 本地建库时直接用
+    return info
 
 
 def repo_pids():

@@ -4,6 +4,8 @@
   "title": "反转链表",
   "method": "reverseList",
   "mode": "listnode",
+  "in_mode": "listnode",
+  "out_mode": "listnode",
   "params": [
     {
       "name": "head",

@@ -3,7 +3,9 @@
   "slug": "convert-sorted-array-to-binary-search-tree",
   "title": "将有序数组转换为二叉搜索树",
   "method": "sortedArrayToBST",
-  "mode": "treenode",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "treenode",
   "params": [
     {
       "name": "nums",

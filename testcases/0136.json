@@ -4,6 +4,8 @@
   "title": "只出现一次的数字",
   "method": "singleNumber",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums",

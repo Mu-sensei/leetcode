@@ -3,7 +3,9 @@
   "slug": "customers-who-never-order",
   "title": "从不订购的客户",
   "method": "find_customers",
-  "mode": "plain",
+  "mode": "sql",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [],
   "return_type": null,
   "cases": [
@@ -52,7 +54,23 @@
           }
         }
       ],
-      "output": "+-----------+"
+      "output": {
+        "columns": [
+          "Customers"
+        ],
+        "rows": [
+          [
+            "Henry"
+          ],
+          [
+            "Max"
+          ]
+        ]
+      }
     }
+  ],
+  "ddl": [
+    "Create table If Not Exists Customers (id int, name varchar(255))",
+    "Create table If Not Exists Orders (id int, customerId int)"
   ]
 }

@@ -4,6 +4,8 @@
   "title": "分发饼干",
   "method": "findContentChildren",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "g",

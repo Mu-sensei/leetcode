@@ -4,6 +4,8 @@
   "title": "买卖股票的最佳时机",
   "method": "maxProfit",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "prices",

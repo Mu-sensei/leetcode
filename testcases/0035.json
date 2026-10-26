@@ -4,6 +4,8 @@
   "title": "搜索插入位置",
   "method": "searchInsert",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums",

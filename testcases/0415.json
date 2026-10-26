@@ -4,6 +4,8 @@
   "title": "字符串相加",
   "method": "addStrings",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "num1",

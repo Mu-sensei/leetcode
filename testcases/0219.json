@@ -4,6 +4,8 @@
   "title": "存在重复元素 II",
   "method": "containsNearbyDuplicate",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums",

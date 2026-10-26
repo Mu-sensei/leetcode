@@ -3,7 +3,9 @@
   "slug": "duplicate-emails",
   "title": "查找重复的电子邮箱",
   "method": "duplicate_emails",
-  "mode": "plain",
+  "mode": "sql",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [],
   "return_type": null,
   "cases": [
@@ -34,7 +36,19 @@
           }
         }
       ],
-      "output": "+---------+"
+      "output": {
+        "columns": [
+          "Email"
+        ],
+        "rows": [
+          [
+            "a@b.com"
+          ]
+        ]
+      }
     }
+  ],
+  "ddl": [
+    "Create table If Not Exists Person (id int, email varchar(255))"
   ]
 }

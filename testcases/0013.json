@@ -4,6 +4,8 @@
   "title": "罗马数字转整数",
   "method": "romanToInt",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

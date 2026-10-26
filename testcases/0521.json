@@ -4,6 +4,8 @@
   "title": "最长特殊序列 Ⅰ",
   "method": "findLUSlength",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "a",

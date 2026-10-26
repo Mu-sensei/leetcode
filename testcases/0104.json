@@ -4,6 +4,8 @@
   "title": "二叉树的最大深度",
   "method": "maxDepth",
   "mode": "treenode",
+  "in_mode": "treenode",
+  "out_mode": "plain",
   "params": [
     {
       "name": "root",

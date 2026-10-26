@@ -4,6 +4,8 @@
   "title": "完美数",
   "method": "checkPerfectNumber",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "num",

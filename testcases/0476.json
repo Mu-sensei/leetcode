@@ -4,6 +4,8 @@
   "title": "数字的补数",
   "method": "findComplement",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "num",

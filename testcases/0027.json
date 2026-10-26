@@ -4,6 +4,8 @@
   "title": "移除元素",
   "method": "removeElement",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums",
@@ -26,7 +28,13 @@
         ],
         3
       ],
-      "output": "2, nums = [2,2,_,_]"
+      "output": {
+        "k": 2,
+        "nums": [
+          2,
+          2
+        ]
+      }
     },
     {
       "input": [
@@ -42,7 +50,16 @@
         ],
         2
       ],
-      "output": "5, nums = [0,1,4,0,3,_,_,_]"
+      "output": {
+        "k": 5,
+        "nums": [
+          0,
+          1,
+          4,
+          0,
+          3
+        ]
+      }
     }
   ]
 }

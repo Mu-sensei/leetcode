@@ -4,6 +4,8 @@
   "title": "学生出勤记录 I",
   "method": "checkRecord",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

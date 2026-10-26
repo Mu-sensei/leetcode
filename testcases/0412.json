@@ -4,6 +4,8 @@
   "title": "Fizz Buzz",
   "method": "fizzBuzz",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "n",

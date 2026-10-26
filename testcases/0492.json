@@ -4,6 +4,8 @@
   "title": "构造矩形",
   "method": "constructRectangle",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "area",

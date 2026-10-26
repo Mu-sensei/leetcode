@@ -4,6 +4,8 @@
   "title": "路径总和",
   "method": "hasPathSum",
   "mode": "treenode",
+  "in_mode": "treenode",
+  "out_mode": "plain",
   "params": [
     {
       "name": "root",

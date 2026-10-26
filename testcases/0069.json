@@ -4,6 +4,8 @@
   "title": "x 的平方根 ",
   "method": "mySqrt",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "x",

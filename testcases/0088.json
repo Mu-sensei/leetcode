@@ -4,6 +4,8 @@
   "title": "合并两个有序数组",
   "method": "merge",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums1",

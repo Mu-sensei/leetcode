@@ -4,6 +4,8 @@
   "title": "二叉树的后序遍历",
   "method": "postorderTraversal",
   "mode": "treenode",
+  "in_mode": "treenode",
+  "out_mode": "plain",
   "params": [
     {
       "name": "root",

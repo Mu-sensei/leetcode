@@ -4,6 +4,8 @@
   "title": "下一个更大元素 I",
   "method": "nextGreaterElement",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums1",

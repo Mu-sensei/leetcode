@@ -4,6 +4,8 @@
   "title": "有效的完全平方数",
   "method": "isPerfectSquare",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "num",

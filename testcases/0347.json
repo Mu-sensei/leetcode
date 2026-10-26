@@ -4,6 +4,8 @@
   "title": "前 K 个高频元素",
   "method": "topKFrequent",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums",

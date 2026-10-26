@@ -3,7 +3,9 @@
   "slug": "range-sum-query-immutable",
   "title": "区域和检索 - 数组不可变",
   "method": "",
-  "mode": "plain",
+  "mode": "design",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "inputs",
@@ -49,7 +51,12 @@
           ]
         ]
       ],
-      "output": null
+      "output": [
+        null,
+        1,
+        -1,
+        -3
+      ]
     }
   ]
 }

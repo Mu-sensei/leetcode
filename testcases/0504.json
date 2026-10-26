@@ -4,6 +4,8 @@
   "title": "七进制数",
   "method": "convertToBase7",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "num",

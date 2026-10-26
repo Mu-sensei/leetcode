@@ -4,6 +4,8 @@
   "title": "提莫攻击",
   "method": "findPoisonedDuration",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "timeSeries",

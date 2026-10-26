@@ -4,6 +4,8 @@
   "title": "检测大写字母",
   "method": "detectCapitalUse",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "word",

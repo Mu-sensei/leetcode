@@ -4,6 +4,8 @@
   "title": "字符串中的第一个唯一字符",
   "method": "firstUniqChar",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

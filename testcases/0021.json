@@ -4,6 +4,8 @@
   "title": "合并两个有序链表",
   "method": "mergeTwoLists",
   "mode": "listnode",
+  "in_mode": "listnode",
+  "out_mode": "listnode",
   "params": [
     {
       "name": "list1",

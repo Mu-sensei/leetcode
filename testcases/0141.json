@@ -4,6 +4,8 @@
   "title": "环形链表",
   "method": "hasCycle",
   "mode": "listnode",
+  "in_mode": "listnode",
+  "out_mode": "plain",
   "params": [
     {
       "name": "head",

@@ -4,6 +4,8 @@
   "title": "删除有序数组中的重复项",
   "method": "removeDuplicates",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "nums",
@@ -20,7 +22,13 @@
           2
         ]
       ],
-      "output": "2, nums = [1,2,_]"
+      "output": {
+        "k": 2,
+        "nums": [
+          1,
+          2
+        ]
+      }
     },
     {
       "input": [
@@ -37,7 +45,16 @@
           4
         ]
       ],
-      "output": "5, nums = [0,1,2,3,4,_,_,_,_,_]"
+      "output": {
+        "k": 5,
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
     }
   ]
 }

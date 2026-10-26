@@ -3,7 +3,9 @@
   "slug": "rising-temperature",
   "title": "上升的温度",
   "method": "rising_temperature",
-  "mode": "plain",
+  "mode": "sql",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [],
   "return_type": null,
   "cases": [
@@ -43,7 +45,22 @@
           }
         }
       ],
-      "output": "+----+"
+      "output": {
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          [
+            2
+          ],
+          [
+            4
+          ]
+        ]
+      }
     }
+  ],
+  "ddl": [
+    "Create table If Not Exists Weather (id int, recordDate date, temperature int)"
   ]
 }

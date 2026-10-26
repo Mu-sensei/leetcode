@@ -4,6 +4,8 @@
   "title": "比特位计数",
   "method": "countBits",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "n",

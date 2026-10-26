@@ -4,6 +4,8 @@
   "title": "平衡二叉树",
   "method": "isBalanced",
   "mode": "treenode",
+  "in_mode": "treenode",
+  "out_mode": "plain",
   "params": [
     {
       "name": "root",

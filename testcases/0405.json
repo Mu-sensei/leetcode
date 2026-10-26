@@ -4,6 +4,8 @@
   "title": "数字转换为十六进制数",
   "method": "toHex",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "num",

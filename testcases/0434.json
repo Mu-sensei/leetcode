@@ -4,6 +4,8 @@
   "title": "字符串中的单词数",
   "method": "countSegments",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

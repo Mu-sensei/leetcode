@@ -4,6 +4,8 @@
   "title": "颠倒二进制位",
   "method": "reverseBits",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "n",

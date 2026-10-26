@@ -4,6 +4,8 @@
   "title": "二叉树的所有路径",
   "method": "binaryTreePaths",
   "mode": "treenode",
+  "in_mode": "treenode",
+  "out_mode": "plain",
   "params": [
     {
       "name": "root",

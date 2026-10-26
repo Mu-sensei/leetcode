@@ -4,6 +4,8 @@
   "title": "同构字符串",
   "method": "isIsomorphic",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "s",

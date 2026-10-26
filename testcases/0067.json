@@ -4,6 +4,8 @@
   "title": "二进制求和",
   "method": "addBinary",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "a",

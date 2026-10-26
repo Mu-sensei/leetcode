@@ -4,6 +4,8 @@
   "title": "单词规律",
   "method": "wordPattern",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "pattern",

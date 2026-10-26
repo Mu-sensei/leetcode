@@ -4,6 +4,8 @@
   "title": "Excel 表列序号",
   "method": "titleToNumber",
   "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [
     {
       "name": "columnTitle",

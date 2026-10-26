@@ -4,6 +4,8 @@
   "title": "回文链表",
   "method": "isPalindrome",
   "mode": "listnode",
+  "in_mode": "listnode",
+  "out_mode": "plain",
   "params": [
     {
       "name": "head",

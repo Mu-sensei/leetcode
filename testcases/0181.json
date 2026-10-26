@@ -3,7 +3,9 @@
   "slug": "employees-earning-more-than-their-managers",
   "title": "超过经理收入的员工",
   "method": "find_employees",
-  "mode": "plain",
+  "mode": "sql",
+  "in_mode": "plain",
+  "out_mode": "plain",
   "params": [],
   "return_type": null,
   "cases": [
@@ -48,7 +50,19 @@
           }
         }
       ],
-      "output": "+----------+"
+      "output": {
+        "columns": [
+          "Employee"
+        ],
+        "rows": [
+          [
+            "Joe"
+          ]
+        ]
+      }
     }
+  ],
+  "ddl": [
+    "Create table If Not Exists Employee (id int, name varchar(255), salary int, managerId int)"
   ]
 }
