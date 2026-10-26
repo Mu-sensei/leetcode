@@ -30,6 +30,13 @@ def pg_bin():
         cands.append("/usr/local/opt/postgresql@%s/bin" % v)
         cands.append("/opt/homebrew/opt/postgresql@%s/bin" % v)
     cands.append("/Applications/Postgres.app/Contents/Versions/latest/bin")
+    cands.append(os.path.expanduser("~/Applications/Postgres.app/Contents/Versions/latest/bin"))
+    # Postgres.app 按版本号分目录, latest 不存在时逐个版本找
+    for base in ("/Applications", os.path.expanduser("~/Applications")):
+        vdir = os.path.join(base, "Postgres.app", "Contents", "Versions")
+        if os.path.isdir(vdir):
+            for v in sorted(os.listdir(vdir), reverse=True):
+                cands.append(os.path.join(vdir, v, "bin"))
     cands.append("/usr/local/bin")
     cands.append("/usr/bin")
     for d in cands:

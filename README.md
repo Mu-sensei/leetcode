@@ -73,7 +73,7 @@ python3 tools/fetch_testcases.py --all   # 一次性拉全部题目的官方用�
 
 | 引擎 | 说明 |
 |---|---|
-| **PostgreSQL**（优先） | 本机装了就用它，`brew install postgresql@17`；首次运行会自动 `initdb` 并在 5433 端口起一个专用实例 |
+| **PostgreSQL**（优先） | 本机装了就用它。安装任选：`brew install postgresql@17`，或直接装 [Postgres.app](https://postgresapp.com/)（拖进 Applications 即可，免编译、不依赖 Xcode CLT）。首次运行会自动 `initdb` 并在 5433 端口起一个专用实例 |
 | **SQLite**（兜底） | 没装 PostgreSQL 时自动回退，Python 标准库自带，零安装即可跑 |
 
 你写的 **MySQL 方言会自动适配**为目标引擎的语法（如 `DATE_ADD(...)`、`DELETE ... JOIN`、反引号等）。
