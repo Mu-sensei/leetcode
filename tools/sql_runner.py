@@ -88,7 +88,9 @@ def to_pg(sql):
     s = re.sub(r"DATEDIFF\s*\(\s*([^,]+?)\s*,\s*([^)]+?)\s*\)",
                r"(\1 - \2)", s, flags=re.I)
     s = re.sub(r"IFNULL\s*\(", "COALESCE(", s, flags=re.I)
-    s = s.replace("`", '"')
+    # 注意: PG 会把未加引号的标识符折叠成小写, 若转成 "Name" 反而不匹配建表时的 name,
+    # 所以这里直接去掉反引号, 沿用 PG 默认的大小写不敏感行为。
+    s = s.replace("`", "")
     m = _DEL_JOIN.match(s)
     if m:
         s = "DELETE FROM %s USING %s WHERE %s" % (
