@@ -1,0 +1,41 @@
+{
+  "pid": 225,
+  "slug": "implement-stack-using-queues",
+  "title": "用队列实现栈",
+  "method": "",
+  "mode": "plain",
+  "params": [],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        [
+          "MyStack",
+          "push",
+          "push",
+          "top",
+          "pop",
+          "empty"
+        ]
+      ],
+      "output": null
+    },
+    {
+      "input": [
+        [
+          [],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [],
+          [],
+          []
+        ]
+      ],
+      "output": null
+    }
+  ]
+}

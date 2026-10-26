@@ -1,0 +1,36 @@
+{
+  "pid": 14,
+  "slug": "longest-common-prefix",
+  "title": "最长公共前缀",
+  "method": "longestCommonPrefix",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "strs",
+      "type": "string[]"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        [
+          "flower",
+          "flow",
+          "flight"
+        ]
+      ],
+      "output": "fl"
+    },
+    {
+      "input": [
+        [
+          "dog",
+          "racecar",
+          "car"
+        ]
+      ],
+      "output": ""
+    }
+  ]
+}

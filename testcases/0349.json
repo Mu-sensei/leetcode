@@ -1,0 +1,57 @@
+{
+  "pid": 349,
+  "slug": "intersection-of-two-arrays",
+  "title": "两个数组的交集",
+  "method": "intersection",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "nums1",
+      "type": "integer[]"
+    },
+    {
+      "name": "nums2",
+      "type": "integer[]"
+    }
+  ],
+  "return_type": "integer[]",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "output": [
+        2
+      ]
+    },
+    {
+      "input": [
+        [
+          4,
+          9,
+          5
+        ],
+        [
+          9,
+          4,
+          9,
+          8,
+          4
+        ]
+      ],
+      "output": [
+        9,
+        4
+      ]
+    }
+  ]
+}

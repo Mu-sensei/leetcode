@@ -1,0 +1,41 @@
+{
+  "pid": 205,
+  "slug": "isomorphic-strings",
+  "title": "同构字符串",
+  "method": "isIsomorphic",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    },
+    {
+      "name": "t",
+      "type": "string"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        "egg",
+        "add"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "foo",
+        "bar"
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        "paper",
+        "title"
+      ],
+      "output": true
+    }
+  ]
+}

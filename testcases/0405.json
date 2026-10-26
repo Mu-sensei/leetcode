@@ -1,0 +1,28 @@
+{
+  "pid": 405,
+  "slug": "convert-a-number-to-hexadecimal",
+  "title": "数字转换为十六进制数",
+  "method": "toHex",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "num",
+      "type": "integer"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        26
+      ],
+      "output": "1a"
+    },
+    {
+      "input": [
+        -1
+      ],
+      "output": "ffffffff"
+    }
+  ]
+}

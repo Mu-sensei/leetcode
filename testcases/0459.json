@@ -1,0 +1,34 @@
+{
+  "pid": 459,
+  "slug": "repeated-substring-pattern",
+  "title": "重复的子字符串",
+  "method": "repeatedSubstringPattern",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        "abab"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "aba"
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        "abcabcabcabc"
+      ],
+      "output": true
+    }
+  ]
+}

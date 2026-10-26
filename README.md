@@ -58,11 +58,13 @@ leetcode/
 
 ## 本地运行解法
 
-详见 [`local_run.py`](local_run.py)。基本用法：
+详见 [`local_run.py`](local_run.py)。测试用例来自 **LeetCode 官方**——由 `tools/fetch_testcases.py` 拉到 `testcases/`，本仓库 110 题**全部覆盖，任意题号直接跑**：
 
 ```bash
-python local_run.py 1        # 运行第 1 题的示例用例
-python local_run.py 9 --list # 列出第 9 题的示例
+python3 local_run.py 15            # 跑第 15 题（自动用它的官方用例）
+python3 local_run.py 15 --fetch    # 本地没用例时, 先从 LeetCode 官方拉一份再跑
+python3 local_run.py 9 --list      # 只列出第 9 题的用例, 不执行
+python3 tools/fetch_testcases.py --all   # 一次性拉全部题目的官方用例
 ```
 
 > SQL 类题目（`[0175]`~`[0197]` 等 6 道）文件里是 **MySQL** 语句，无法用 Python 框架跑，请在 MySQL 环境验证。

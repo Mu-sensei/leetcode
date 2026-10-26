@@ -1,0 +1,34 @@
+{
+  "pid": 231,
+  "slug": "power-of-two",
+  "title": "2 的幂",
+  "method": "isPowerOfTwo",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "n",
+      "type": "integer"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        1
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        16
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        3
+      ],
+      "output": false
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "pid": 182,
+  "slug": "duplicate-emails",
+  "title": "查找重复的电子邮箱",
+  "method": "duplicate_emails",
+  "mode": "plain",
+  "params": [],
+  "return_type": null,
+  "cases": [
+    {
+      "input": [
+        {
+          "headers": {
+            "Person": [
+              "id",
+              "email"
+            ]
+          },
+          "rows": {
+            "Person": [
+              [
+                1,
+                "a@b.com"
+              ],
+              [
+                2,
+                "c@d.com"
+              ],
+              [
+                3,
+                "a@b.com"
+              ]
+            ]
+          }
+        }
+      ],
+      "output": "+---------+"
+    }
+  ]
+}

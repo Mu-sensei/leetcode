@@ -1,0 +1,39 @@
+{
+  "pid": 338,
+  "slug": "counting-bits",
+  "title": "比特位计数",
+  "method": "countBits",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "n",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer[]",
+  "cases": [
+    {
+      "input": [
+        2
+      ],
+      "output": [
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "input": [
+        5
+      ],
+      "output": [
+        0,
+        1,
+        1,
+        2,
+        1,
+        2
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "pid": 27,
+  "slug": "remove-element",
+  "title": "移除元素",
+  "method": "removeElement",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "nums",
+      "type": "integer[]"
+    },
+    {
+      "name": "val",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        [
+          3,
+          2,
+          2,
+          3
+        ],
+        3
+      ],
+      "output": "2, nums = [2,2,_,_]"
+    },
+    {
+      "input": [
+        [
+          0,
+          1,
+          2,
+          2,
+          3,
+          0,
+          4,
+          2
+        ],
+        2
+      ],
+      "output": "5, nums = [0,1,4,0,3,_,_,_]"
+    }
+  ]
+}

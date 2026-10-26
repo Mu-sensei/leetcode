@@ -1,0 +1,43 @@
+{
+  "pid": 26,
+  "slug": "remove-duplicates-from-sorted-array",
+  "title": "删除有序数组中的重复项",
+  "method": "removeDuplicates",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "nums",
+      "type": "integer[]"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          1,
+          2
+        ]
+      ],
+      "output": "2, nums = [1,2,_]"
+    },
+    {
+      "input": [
+        [
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4
+        ]
+      ],
+      "output": "5, nums = [0,1,2,3,4,_,_,_,_,_]"
+    }
+  ]
+}

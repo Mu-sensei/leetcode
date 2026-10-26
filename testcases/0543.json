@@ -1,0 +1,37 @@
+{
+  "pid": 543,
+  "slug": "diameter-of-binary-tree",
+  "title": "二叉树的直径",
+  "method": "diameterOfBinaryTree",
+  "mode": "treenode",
+  "params": [
+    {
+      "name": "root",
+      "type": "TreeNode"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        [
+          1,
+          2
+        ]
+      ],
+      "output": 1
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "pid": 257,
+  "slug": "binary-tree-paths",
+  "title": "二叉树的所有路径",
+  "method": "binaryTreePaths",
+  "mode": "treenode",
+  "params": [
+    {
+      "name": "root",
+      "type": "TreeNode"
+    }
+  ],
+  "return_type": "list<string>",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          3,
+          null,
+          5
+        ]
+      ],
+      "output": [
+        "1->2->5",
+        "1->3"
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ]
+      ],
+      "output": [
+        "1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "pid": 242,
+  "slug": "valid-anagram",
+  "title": "有效的字母异位词",
+  "method": "isAnagram",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    },
+    {
+      "name": "t",
+      "type": "string"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        "anagram",
+        "nagaram"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "rat",
+        "car"
+      ],
+      "output": false
+    }
+  ]
+}

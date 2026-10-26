@@ -1,0 +1,41 @@
+{
+  "pid": 290,
+  "slug": "word-pattern",
+  "title": "单词规律",
+  "method": "wordPattern",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "pattern",
+      "type": "string"
+    },
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        "abba",
+        "dog cat cat dog"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "abba",
+        "dog cat cat fish"
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        "aaaa",
+        "dog cat cat dog"
+      ],
+      "output": false
+    }
+  ]
+}

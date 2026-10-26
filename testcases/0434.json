@@ -1,0 +1,28 @@
+{
+  "pid": 434,
+  "slug": "number-of-segments-in-a-string",
+  "title": "字符串中的单词数",
+  "method": "countSegments",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        "Hello, my name is John"
+      ],
+      "output": 5
+    },
+    {
+      "input": [
+        "Hello"
+      ],
+      "output": 1
+    }
+  ]
+}

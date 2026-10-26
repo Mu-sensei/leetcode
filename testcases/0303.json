@@ -1,0 +1,55 @@
+{
+  "pid": 303,
+  "slug": "range-sum-query-immutable",
+  "title": "区域和检索 - 数组不可变",
+  "method": "",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "inputs",
+      "type": "integer[]"
+    },
+    {
+      "name": "inputs",
+      "type": "integer[]"
+    }
+  ],
+  "return_type": "list<String>",
+  "cases": [
+    {
+      "input": [
+        [
+          "NumArray",
+          "sumRange",
+          "sumRange",
+          "sumRange"
+        ],
+        [
+          [
+            [
+              -2,
+              0,
+              3,
+              -5,
+              2,
+              -1
+            ]
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      ],
+      "output": null
+    }
+  ]
+}

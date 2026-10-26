@@ -1,0 +1,28 @@
+{
+  "pid": 507,
+  "slug": "perfect-number",
+  "title": "完美数",
+  "method": "checkPerfectNumber",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "num",
+      "type": "integer"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        28
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        7
+      ],
+      "output": false
+    }
+  ]
+}

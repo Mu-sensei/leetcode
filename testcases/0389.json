@@ -1,0 +1,34 @@
+{
+  "pid": 389,
+  "slug": "find-the-difference",
+  "title": "找不同",
+  "method": "findTheDifference",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    },
+    {
+      "name": "t",
+      "type": "string"
+    }
+  ],
+  "return_type": "character",
+  "cases": [
+    {
+      "input": [
+        "abcd",
+        "abcde"
+      ],
+      "output": "e"
+    },
+    {
+      "input": [
+        "",
+        "y"
+      ],
+      "output": "y"
+    }
+  ]
+}

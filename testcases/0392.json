@@ -1,0 +1,34 @@
+{
+  "pid": 392,
+  "slug": "is-subsequence",
+  "title": "判断子序列",
+  "method": "isSubsequence",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    },
+    {
+      "name": "t",
+      "type": "string"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        "abc",
+        "ahbgdc"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "axc",
+        "ahbgdc"
+      ],
+      "output": false
+    }
+  ]
+}

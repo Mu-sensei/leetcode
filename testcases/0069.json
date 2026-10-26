@@ -1,0 +1,28 @@
+{
+  "pid": 69,
+  "slug": "sqrtx",
+  "title": "x 的平方根 ",
+  "method": "mySqrt",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "x",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        4
+      ],
+      "output": 2
+    },
+    {
+      "input": [
+        8
+      ],
+      "output": 2
+    }
+  ]
+}

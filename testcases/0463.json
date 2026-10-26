@@ -1,0 +1,68 @@
+{
+  "pid": 463,
+  "slug": "island-perimeter",
+  "title": "岛屿的周长",
+  "method": "islandPerimeter",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "grid",
+      "type": "integer[][]"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ]
+      ],
+      "output": 16
+    },
+    {
+      "input": [
+        [
+          [
+            1
+          ]
+        ]
+      ],
+      "output": 4
+    },
+    {
+      "input": [
+        [
+          [
+            1,
+            0
+          ]
+        ]
+      ],
+      "output": 4
+    }
+  ]
+}

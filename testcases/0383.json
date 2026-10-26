@@ -1,0 +1,41 @@
+{
+  "pid": 383,
+  "slug": "ransom-note",
+  "title": "赎金信",
+  "method": "canConstruct",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "ransomNote",
+      "type": "string"
+    },
+    {
+      "name": "magazine",
+      "type": "string"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        "a",
+        "b"
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        "aa",
+        "ab"
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        "aa",
+        "aab"
+      ],
+      "output": true
+    }
+  ]
+}

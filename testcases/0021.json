@@ -1,0 +1,60 @@
+{
+  "pid": 21,
+  "slug": "merge-two-sorted-lists",
+  "title": "合并两个有序链表",
+  "method": "mergeTwoLists",
+  "mode": "listnode",
+  "params": [
+    {
+      "name": "list1",
+      "type": "ListNode"
+    },
+    {
+      "name": "list2",
+      "type": "ListNode"
+    }
+  ],
+  "return_type": "ListNode",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "output": [
+        1,
+        1,
+        2,
+        3,
+        4,
+        4
+      ]
+    },
+    {
+      "input": [
+        [],
+        []
+      ],
+      "output": []
+    },
+    {
+      "input": [
+        [],
+        [
+          0
+        ]
+      ],
+      "output": [
+        0
+      ]
+    }
+  ]
+}

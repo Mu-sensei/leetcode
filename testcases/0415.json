@@ -1,0 +1,41 @@
+{
+  "pid": 415,
+  "slug": "add-strings",
+  "title": "字符串相加",
+  "method": "addStrings",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "num1",
+      "type": "string"
+    },
+    {
+      "name": "num2",
+      "type": "string"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        "11",
+        "123"
+      ],
+      "output": "134"
+    },
+    {
+      "input": [
+        "456",
+        "77"
+      ],
+      "output": "533"
+    },
+    {
+      "input": [
+        "0",
+        "0"
+      ],
+      "output": "0"
+    }
+  ]
+}

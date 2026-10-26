@@ -1,0 +1,60 @@
+{
+  "pid": 203,
+  "slug": "remove-linked-list-elements",
+  "title": "移除链表元素",
+  "method": "removeElements",
+  "mode": "listnode",
+  "params": [
+    {
+      "name": "head",
+      "type": "ListNode"
+    },
+    {
+      "name": "val",
+      "type": "integer"
+    }
+  ],
+  "return_type": "ListNode",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          6,
+          3,
+          4,
+          5,
+          6
+        ],
+        6
+      ],
+      "output": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "input": [
+        [],
+        1
+      ],
+      "output": []
+    },
+    {
+      "input": [
+        [
+          7,
+          7,
+          7,
+          7
+        ],
+        7
+      ],
+      "output": []
+    }
+  ]
+}

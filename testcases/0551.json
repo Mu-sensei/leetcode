@@ -1,0 +1,28 @@
+{
+  "pid": 551,
+  "slug": "student-attendance-record-i",
+  "title": "学生出勤记录 I",
+  "method": "checkRecord",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        "PPALLP"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "PPALLL"
+      ],
+      "output": false
+    }
+  ]
+}

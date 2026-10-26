@@ -1,0 +1,28 @@
+{
+  "pid": 409,
+  "slug": "longest-palindrome",
+  "title": "最长回文串",
+  "method": "longestPalindrome",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        "abccccdd"
+      ],
+      "output": 7
+    },
+    {
+      "input": [
+        "a"
+      ],
+      "output": 1
+    }
+  ]
+}

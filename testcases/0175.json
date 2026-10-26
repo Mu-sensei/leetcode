@@ -1,0 +1,59 @@
+{
+  "pid": 175,
+  "slug": "combine-two-tables",
+  "title": "组合两个表",
+  "method": "combine_two_tables",
+  "mode": "plain",
+  "params": [],
+  "return_type": null,
+  "cases": [
+    {
+      "input": [
+        {
+          "headers": {
+            "Person": [
+              "personId",
+              "lastName",
+              "firstName"
+            ],
+            "Address": [
+              "addressId",
+              "personId",
+              "city",
+              "state"
+            ]
+          },
+          "rows": {
+            "Person": [
+              [
+                1,
+                "Wang",
+                "Allen"
+              ],
+              [
+                2,
+                "Alice",
+                "Bob"
+              ]
+            ],
+            "Address": [
+              [
+                1,
+                2,
+                "New York City",
+                "New York"
+              ],
+              [
+                2,
+                3,
+                "Leetcode",
+                "California"
+              ]
+            ]
+          }
+        }
+      ],
+      "output": "+-----------+----------+---------------+----------+"
+    }
+  ]
+}

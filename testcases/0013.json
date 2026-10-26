@@ -1,0 +1,34 @@
+{
+  "pid": 13,
+  "slug": "roman-to-integer",
+  "title": "罗马数字转整数",
+  "method": "romanToInt",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        "III"
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        "LVIII"
+      ],
+      "output": 58
+    },
+    {
+      "input": [
+        "MCMXCIV"
+      ],
+      "output": 1994
+    }
+  ]
+}

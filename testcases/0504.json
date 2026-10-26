@@ -1,0 +1,28 @@
+{
+  "pid": 504,
+  "slug": "base-7",
+  "title": "七进制数",
+  "method": "convertToBase7",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "num",
+      "type": "integer"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        100
+      ],
+      "output": "202"
+    },
+    {
+      "input": [
+        -7
+      ],
+      "output": "-10"
+    }
+  ]
+}

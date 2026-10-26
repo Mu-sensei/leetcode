@@ -1,0 +1,28 @@
+{
+  "pid": 202,
+  "slug": "happy-number",
+  "title": "快乐数",
+  "method": "isHappy",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "n",
+      "type": "integer"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        19
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        2
+      ],
+      "output": false
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "pid": 476,
+  "slug": "number-complement",
+  "title": "数字的补数",
+  "method": "findComplement",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "num",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        5
+      ],
+      "output": 2
+    },
+    {
+      "input": [
+        1
+      ],
+      "output": 0
+    }
+  ]
+}

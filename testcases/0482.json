@@ -1,0 +1,34 @@
+{
+  "pid": 482,
+  "slug": "license-key-formatting",
+  "title": "密钥格式化",
+  "method": "licenseKeyFormatting",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    },
+    {
+      "name": "k",
+      "type": "integer"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        "5F3Z-2e-9-w",
+        4
+      ],
+      "output": "5F3Z-2E9W"
+    },
+    {
+      "input": [
+        "2-5g-3-J",
+        2
+      ],
+      "output": "2-5G-3J"
+    }
+  ]
+}

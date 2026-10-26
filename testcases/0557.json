@@ -1,0 +1,28 @@
+{
+  "pid": 557,
+  "slug": "reverse-words-in-a-string-iii",
+  "title": "反转字符串中的单词 III",
+  "method": "reverseWords",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        "Let's take LeetCode contest"
+      ],
+      "output": "s'teL ekat edoCteeL tsetnoc"
+    },
+    {
+      "input": [
+        "Mr Ding"
+      ],
+      "output": "rM gniD"
+    }
+  ]
+}

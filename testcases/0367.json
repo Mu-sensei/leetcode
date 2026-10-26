@@ -1,0 +1,28 @@
+{
+  "pid": 367,
+  "slug": "valid-perfect-square",
+  "title": "有效的完全平方数",
+  "method": "isPerfectSquare",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "num",
+      "type": "integer"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        16
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        14
+      ],
+      "output": false
+    }
+  ]
+}

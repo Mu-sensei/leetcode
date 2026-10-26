@@ -1,0 +1,34 @@
+{
+  "pid": 168,
+  "slug": "excel-sheet-column-title",
+  "title": "Excel 表列名称",
+  "method": "convertToTitle",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "columnNumber",
+      "type": "integer"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        1
+      ],
+      "output": "A"
+    },
+    {
+      "input": [
+        28
+      ],
+      "output": "AB"
+    },
+    {
+      "input": [
+        701
+      ],
+      "output": "ZY"
+    }
+  ]
+}

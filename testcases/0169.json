@@ -1,0 +1,40 @@
+{
+  "pid": 169,
+  "slug": "majority-element",
+  "title": "多数元素",
+  "method": "majorityElement",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "nums",
+      "type": "integer[]"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        [
+          3,
+          2,
+          3
+        ]
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        [
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2
+        ]
+      ],
+      "output": 2
+    }
+  ]
+}

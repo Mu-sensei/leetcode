@@ -1,0 +1,46 @@
+{
+  "pid": 20,
+  "slug": "valid-parentheses",
+  "title": "有效的括号",
+  "method": "isValid",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        "()"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "()[]{}"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "(]"
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        "([])"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "([)]"
+      ],
+      "output": false
+    }
+  ]
+}

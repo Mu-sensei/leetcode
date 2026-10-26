@@ -1,0 +1,34 @@
+{
+  "pid": 326,
+  "slug": "power-of-three",
+  "title": "3 的幂",
+  "method": "isPowerOfThree",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "n",
+      "type": "integer"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        27
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        0
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        -1
+      ],
+      "output": false
+    }
+  ]
+}

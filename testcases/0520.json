@@ -1,0 +1,28 @@
+{
+  "pid": 520,
+  "slug": "detect-capital",
+  "title": "检测大写字母",
+  "method": "detectCapitalUse",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "word",
+      "type": "string"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        "USA"
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        "FlaG"
+      ],
+      "output": false
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "pid": 441,
+  "slug": "arranging-coins",
+  "title": "排列硬币",
+  "method": "arrangeCoins",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "n",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        5
+      ],
+      "output": 2
+    },
+    {
+      "input": [
+        8
+      ],
+      "output": 3
+    }
+  ]
+}

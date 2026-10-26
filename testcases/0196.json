@@ -1,0 +1,40 @@
+{
+  "pid": 196,
+  "slug": "delete-duplicate-emails",
+  "title": "删除重复的电子邮箱",
+  "method": "delete_duplicate_emails",
+  "mode": "plain",
+  "params": [],
+  "return_type": null,
+  "cases": [
+    {
+      "input": [
+        {
+          "headers": {
+            "Person": [
+              "id",
+              "email"
+            ]
+          },
+          "rows": {
+            "Person": [
+              [
+                1,
+                "john@example.com"
+              ],
+              [
+                2,
+                "bob@example.com"
+              ],
+              [
+                3,
+                "john@example.com"
+              ]
+            ]
+          }
+        }
+      ],
+      "output": "+----+------------------+"
+    }
+  ]
+}

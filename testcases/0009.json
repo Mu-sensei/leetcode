@@ -1,0 +1,34 @@
+{
+  "pid": 9,
+  "slug": "palindrome-number",
+  "title": "回文数",
+  "method": "isPalindrome",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "x",
+      "type": "integer"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        121
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        -121
+      ],
+      "output": false
+    },
+    {
+      "input": [
+        10
+      ],
+      "output": false
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "pid": 521,
+  "slug": "longest-uncommon-subsequence-i",
+  "title": "最长特殊序列 Ⅰ",
+  "method": "findLUSlength",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "a",
+      "type": "string"
+    },
+    {
+      "name": "b",
+      "type": "string"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        "aba",
+        "cdc"
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        "aaa",
+        "bbb"
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        "aaa",
+        "aaa"
+      ],
+      "output": -1
+    }
+  ]
+}

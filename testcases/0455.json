@@ -1,0 +1,48 @@
+{
+  "pid": 455,
+  "slug": "assign-cookies",
+  "title": "分发饼干",
+  "method": "findContentChildren",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "g",
+      "type": "integer[]"
+    },
+    {
+      "name": "s",
+      "type": "integer[]"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "output": 1
+    },
+    {
+      "input": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "output": 2
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "pid": 258,
+  "slug": "add-digits",
+  "title": "各位相加",
+  "method": "addDigits",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "num",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        38
+      ],
+      "output": 2
+    },
+    {
+      "input": [
+        0
+      ],
+      "output": 0
+    }
+  ]
+}

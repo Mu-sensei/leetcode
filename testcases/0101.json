@@ -1,0 +1,44 @@
+{
+  "pid": 101,
+  "slug": "symmetric-tree",
+  "title": "对称二叉树",
+  "method": "isSymmetric",
+  "mode": "treenode",
+  "params": [
+    {
+      "name": "root",
+      "type": "TreeNode"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          3
+        ]
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        [
+          1,
+          2,
+          2,
+          null,
+          3,
+          null,
+          3
+        ]
+      ],
+      "output": false
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "pid": 500,
+  "slug": "keyboard-row",
+  "title": "键盘行",
+  "method": "findWords",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "words",
+      "type": "string[]"
+    }
+  ],
+  "return_type": "string[]",
+  "cases": [
+    {
+      "input": [
+        [
+          "Hello",
+          "Alaska",
+          "Dad",
+          "Peace"
+        ]
+      ],
+      "output": [
+        "Alaska",
+        "Dad"
+      ]
+    },
+    {
+      "input": [
+        [
+          "omk"
+        ]
+      ],
+      "output": []
+    },
+    {
+      "input": [
+        [
+          "adsdf",
+          "sfd"
+        ]
+      ],
+      "output": [
+        "adsdf",
+        "sfd"
+      ]
+    }
+  ]
+}

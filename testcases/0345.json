@@ -1,0 +1,28 @@
+{
+  "pid": 345,
+  "slug": "reverse-vowels-of-a-string",
+  "title": "反转字符串中的元音字母",
+  "method": "reverseVowels",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        "IceCreAm"
+      ],
+      "output": "AceCreIm"
+    },
+    {
+      "input": [
+        "leetcode"
+      ],
+      "output": "leotcede"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "pid": 461,
+  "slug": "hamming-distance",
+  "title": "汉明距离",
+  "method": "hammingDistance",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "x",
+      "type": "integer"
+    },
+    {
+      "name": "y",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        1,
+        4
+      ],
+      "output": 2
+    },
+    {
+      "input": [
+        3,
+        1
+      ],
+      "output": 1
+    }
+  ]
+}

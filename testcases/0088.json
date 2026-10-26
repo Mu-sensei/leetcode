@@ -1,0 +1,83 @@
+{
+  "pid": 88,
+  "slug": "merge-sorted-array",
+  "title": "合并两个有序数组",
+  "method": "merge",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "nums1",
+      "type": "integer[]"
+    },
+    {
+      "name": "m",
+      "type": "integer"
+    },
+    {
+      "name": "nums2",
+      "type": "integer[]"
+    },
+    {
+      "name": "n",
+      "type": "integer"
+    }
+  ],
+  "return_type": "void",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          3,
+          0,
+          0,
+          0
+        ],
+        3,
+        [
+          2,
+          5,
+          6
+        ],
+        3
+      ],
+      "output": [
+        1,
+        2,
+        2,
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        1,
+        [],
+        0
+      ],
+      "output": [
+        1
+      ]
+    },
+    {
+      "input": [
+        [
+          0
+        ],
+        0,
+        [
+          1
+        ],
+        1
+      ],
+      "output": [
+        1
+      ]
+    }
+  ]
+}

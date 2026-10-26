@@ -1,0 +1,40 @@
+{
+  "pid": 495,
+  "slug": "teemo-attacking",
+  "title": "提莫攻击",
+  "method": "findPoisonedDuration",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "timeSeries",
+      "type": "integer[]"
+    },
+    {
+      "name": "duration",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          4
+        ],
+        2
+      ],
+      "output": 4
+    },
+    {
+      "input": [
+        [
+          1,
+          2
+        ],
+        2
+      ],
+      "output": 3
+    }
+  ]
+}

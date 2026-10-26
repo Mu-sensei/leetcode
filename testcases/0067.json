@@ -1,0 +1,34 @@
+{
+  "pid": 67,
+  "slug": "add-binary",
+  "title": "二进制求和",
+  "method": "addBinary",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "a",
+      "type": "string"
+    },
+    {
+      "name": "b",
+      "type": "string"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        "11",
+        "1"
+      ],
+      "output": "100"
+    },
+    {
+      "input": [
+        "1010",
+        "1011"
+      ],
+      "output": "10101"
+    }
+  ]
+}

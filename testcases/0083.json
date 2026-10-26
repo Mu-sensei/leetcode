@@ -1,0 +1,45 @@
+{
+  "pid": 83,
+  "slug": "remove-duplicates-from-sorted-list",
+  "title": "删除排序链表中的重复元素",
+  "method": "deleteDuplicates",
+  "mode": "listnode",
+  "params": [
+    {
+      "name": "head",
+      "type": "ListNode"
+    }
+  ],
+  "return_type": "ListNode",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          1,
+          2
+        ]
+      ],
+      "output": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": [
+        [
+          1,
+          1,
+          2,
+          3,
+          3
+        ]
+      ],
+      "output": [
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

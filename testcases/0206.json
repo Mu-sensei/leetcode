@@ -1,0 +1,52 @@
+{
+  "pid": 206,
+  "slug": "reverse-linked-list",
+  "title": "反转链表",
+  "method": "reverseList",
+  "mode": "listnode",
+  "params": [
+    {
+      "name": "head",
+      "type": "ListNode"
+    }
+  ],
+  "return_type": "ListNode",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ],
+      "output": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ]
+    },
+    {
+      "input": [
+        [
+          1,
+          2
+        ]
+      ],
+      "output": [
+        2,
+        1
+      ]
+    },
+    {
+      "input": [
+        []
+      ],
+      "output": []
+    }
+  ]
+}

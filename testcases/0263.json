@@ -1,0 +1,34 @@
+{
+  "pid": 263,
+  "slug": "ugly-number",
+  "title": "丑数",
+  "method": "isUgly",
+  "mode": "plain",
+  "params": [
+    {
+      "name": "n",
+      "type": "integer"
+    }
+  ],
+  "return_type": "boolean",
+  "cases": [
+    {
+      "input": [
+        6
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        1
+      ],
+      "output": true
+    },
+    {
+      "input": [
+        14
+      ],
+      "output": false
+    }
+  ]
+}
