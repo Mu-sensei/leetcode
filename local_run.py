@@ -62,8 +62,10 @@ def to_listnode(xs):
 
 
 def from_listnode(node):
-    out = []
-    while node:
+    """链表转 list。带防环保护 —— 环形链表题返回的就是环上的节点, 不加保护会死循环。"""
+    out, seen = [], set()
+    while node and id(node) not in seen:
+        seen.add(id(node))
         out.append(node.val)
         node = node.next
     return out
