@@ -40,3 +40,8 @@ scratch_*.py
 tools/.cache/
 tools/.autosync.lock
 
+# ---- LeetCode 插件（含登录态 cookie，切勿提交）----
+leetcode-config.xml
+*.userCookie
+.idea/leetcode*.xml
+

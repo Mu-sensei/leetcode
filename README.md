@@ -11,7 +11,7 @@
 GitHub 首页只能看到根目录的几个文件。**真正的题目代码在第 4 层目录里**，需要点进去：
 
 ```
-leetcode-solutions/
+leetcode/
 ├── solutions/                  ← 点这里
 │   └── leetcode/
 │       └── editor/
