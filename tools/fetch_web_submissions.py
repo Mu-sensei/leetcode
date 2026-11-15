@@ -169,7 +169,8 @@ def norm_code(c):
 
 
 def main():
-    limit = 60
+    # 每天定点扫描只看最近 20 条足够(一天做不了更多), 请求少也就不容易触发限流
+    limit = 20
     dry = "--dry-run" in sys.argv
     if "--limit" in sys.argv:
         try:
@@ -215,11 +216,20 @@ def main():
         if not sid or sid in seen_ids:
             continue
         seen_ids.add(sid)
-        try:
-            d = (gql(DETAIL_QUERY, {"submissionId": str(sid)})
-                 .get("data", {}).get("submissionDetail") or {})
-        except Exception as e:
-            log("  提交 %s 详情失败: %s" % (sid, e))
+        # LeetCode 偶发对单个提交返回 405/限流, 简单退避重试, 避免整轮少算题
+        d = {}
+        for attempt in range(3):
+            try:
+                d = (gql(DETAIL_QUERY, {"submissionId": str(sid)})
+                     .get("data", {}).get("submissionDetail") or {})
+                if d:
+                    break
+            except Exception as e:
+                if attempt == 2:
+                    log("  提交 %s 详情失败(已重试3次): %s" % (sid, e))
+                else:
+                    time.sleep(0.8 * (attempt + 1))
+        if not d:
             continue
         q = d.get("question") or {}
         fid = str(q.get("questionFrontendId") or "")
@@ -228,7 +238,13 @@ def main():
             continue
         by_qid.setdefault(int(fid), []).append(
             (sid, code, q.get("translatedTitle") or s.get("title") or ""))
-        time.sleep(0.25)
+        # 每次详情请求后歇一下: LeetCode 对短时间高频 GraphQL 会限流返回空/405
+        time.sleep(0.6)
+
+    # 限流兜底: 若一条详情都没拿到, 明确报告"本轮未取到数据", 不要误判成"没有新题"
+    if not by_qid:
+        log("本轮未取到任何提交详情(疑似接口限流), 判定为『未知』而非『无新题』, 下次会自动重试")
+        return 0
 
     new_ids, variant_ids = [], []
     for fid in sorted(by_qid):
