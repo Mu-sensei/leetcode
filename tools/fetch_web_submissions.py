@@ -207,15 +207,32 @@ def main():
     log("最近提交 %d 条" % len(subs))
 
     existing = local_ids()
+    # 结果缓存: 已成功抓过详情的 submission id 不再重复请求, 大幅降低限流概率
+    cache_file = os.path.join(ROOT, "tools", ".cache", "web_submissions.json")
+    os.makedirs(os.path.dirname(cache_file), exist_ok=True)
+    try:
+        cache = json.load(open(cache_file, encoding="utf-8"))
+    except Exception:
+        cache = {}
+    # 结构: {sub_id: {"fid": 题号, "title": 标题, "code": 代码}}
+    cache = {str(k): v for k, v in cache.items() if isinstance(v, dict)}
+
     by_qid = {}       # 题号 -> [(sub_id, code, title), ...]
     seen_ids = set()
+    newly_fetched = 0
     for s in subs:
         if s.get("status_display") != "Accepted":
             continue
-        sid = s.get("id")
+        sid = str(s.get("id") or "")
         if not sid or sid in seen_ids:
             continue
         seen_ids.add(sid)
+        if sid in cache and isinstance(cache[sid].get("code"), str) and cache[sid]["code"].strip():
+            c = cache[sid]
+            if str(c.get("fid", "")).isdigit():
+                by_qid.setdefault(int(c["fid"]), []).append(
+                    (sid, c["code"], c.get("title") or ""))
+                continue
         # LeetCode 偶发对单个提交返回 405/限流, 简单退避重试, 避免整轮少算题
         d = {}
         for attempt in range(3):
@@ -236,10 +253,22 @@ def main():
         code = d.get("code") or ""
         if not fid.isdigit() or not code.strip():
             continue
-        by_qid.setdefault(int(fid), []).append(
-            (sid, code, q.get("translatedTitle") or s.get("title") or ""))
+        title = q.get("translatedTitle") or s.get("title") or ""
+        cache[sid] = {"fid": fid, "title": title, "code": code}
+        newly_fetched += 1
+        by_qid.setdefault(int(fid), []).append((sid, code, title))
         # 每次详情请求后歇一下: LeetCode 对短时间高频 GraphQL 会限流返回空/405
         time.sleep(0.6)
+
+    if newly_fetched:
+        try:
+            # 只保留最近 300 条, 避免缓存无限膨胀
+            keep = dict(list(cache.items())[-300:])
+            json.dump(keep, open(cache_file, "w", encoding="utf-8"),
+                      ensure_ascii=False)
+            log("缓存命中, 本轮新请求 %d 条详情" % newly_fetched)
+        except Exception as e:
+            log("写缓存失败(不影响同步): %s" % e)
 
     # 限流兜底: 若一条详情都没拿到, 明确报告"本轮未取到数据", 不要误判成"没有新题"
     if not by_qid:
