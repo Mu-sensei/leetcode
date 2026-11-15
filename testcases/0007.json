@@ -1,0 +1,36 @@
+{
+  "pid": 7,
+  "slug": "reverse-integer",
+  "title": "整数反转",
+  "method": "reverse",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "x",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        123
+      ],
+      "output": 321
+    },
+    {
+      "input": [
+        -123
+      ],
+      "output": -321
+    },
+    {
+      "input": [
+        120
+      ],
+      "output": 21
+    }
+  ]
+}

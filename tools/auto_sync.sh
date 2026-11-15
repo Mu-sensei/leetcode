@@ -15,6 +15,14 @@ exec >>"$LOG" 2>&1
 echo "===== $(date '+%Y-%m-%d %H:%M:%S') 触发 ====="
 
 # 防重入：用目录锁（macOS 无 flock，mkdir 原子）
+# 陈旧锁自愈：若锁目录超过 10 分钟未被清理（上次进程被 launchd 收掉、trap 没跑到），
+# 视为僵尸锁直接删除，否则会永久 "上一次同步仍在运行" 卡死同步。
+if [ -d "$LOCK" ]; then
+  lock_age=$(( $(date +%s) - $(stat -f %m "$LOCK" 2>/dev/null || echo 0) ))
+  if [ "$lock_age" -gt 600 ]; then
+    rmdir "$LOCK" 2>/dev/null && echo "清理陈旧锁(已存在 ${lock_age}s)"
+  fi
+fi
 if ! mkdir "$LOCK" 2>/dev/null; then
   echo "skip: 上一次同步仍在运行"
   exit 0

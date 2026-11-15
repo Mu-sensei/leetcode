@@ -8,6 +8,7 @@
     python3 local_run.py 15 --fetch      # 本地没用例时, 先从 LeetCode 官方拉一份再跑
     python3 local_run.py 9 --list        # 只列出第 9 题的用例, 不执行
     python3 local_run.py 21              # 链表/树类题目自动做结构转换
+    python3 local_run.py 15 --debug     # 调试模式: 打印详细入参/期望, 出错时进入 pdb
 
 用例从哪来（按优先级）:
     1. testcases/0015.json —— LeetCode 官方示例用例（tools/fetch_testcases.py 拉取）
@@ -37,6 +38,11 @@ import tempfile
 ROOT = os.path.dirname(os.path.abspath(__file__))
 CN_DIR = os.path.join(ROOT, "solutions", "leetcode", "editor", "cn")
 TC_DIR = os.path.join(ROOT, "testcases")
+
+# 调试开关: 命令行带 --debug 时打开。打开后:
+#   - 每个用例打印真实的 call_args(构造好的入参) 与 got/expected 的完整 repr
+#   - 一旦某个用例执行抛异常, 立即进入 pdb 事后调试(post_mortem), 可当场看变量/回溯
+DEBUG = False
 
 
 # ---- 链表 / 树 的辅助结构(供需要它们的题目复用) ----
@@ -482,6 +488,9 @@ def run(pid):
             except (TypeError, ValueError):
                 n_acc = len(args)
             call_args = build_args(in_mode, args, params)[:max(n_acc, 0)]
+            if DEBUG:
+                print(f"    [DEBUG] case {i}: input={args!r}")
+                print(f"    [DEBUG]   call_args={call_args!r}")
             ret = fn(*call_args)
             arr = call_args[0] if call_args else None
             if ret_void:
@@ -490,6 +499,11 @@ def run(pid):
             else:
                 got = norm(out_mode, ret)
         except Exception as e:
+            if DEBUG:
+                import pdb, traceback
+                traceback.print_exc()
+                pdb.post_mortem(e.__traceback__)
+                sys.exit(1)
             print(f"  用例 {i}: 执行出错 -> {type(e).__name__}: {e}")
             all_ok = False
             continue
@@ -536,6 +550,9 @@ def run(pid):
             except Exception:
                 pass
         all_ok = all_ok and ok
+        if DEBUG and not ok:
+            print(f"    [DEBUG] got={got!r}")
+            print(f"    [DEBUG] expected={expected!r}")
         print(f"  用例 {i}: {'✅' if ok else '❌'} 输入={args} 期望={expected} 实际={got}{note}")
 
     if all_ok:
@@ -574,6 +591,11 @@ def run_design_problem(pid, info, Solution):
                     continue
                 got.append(fn(*a))
         except Exception as e:
+            if DEBUG:
+                import pdb, traceback
+                traceback.print_exc()
+                pdb.post_mortem(e.__traceback__)
+                sys.exit(1)
             print(f"  用例 {i}: 执行出错 -> {type(e).__name__}: {e}")
             all_ok = False
             continue
@@ -658,7 +680,13 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(__doc__)
         sys.exit(0)
-    pid = sys.argv[1]
+    DEBUG = "--debug" in sys.argv
+    # 题号是第一个非 -- 开头的参数, 这样 --debug 放前放后都行
+    pos_args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    if not pos_args:
+        print(__doc__)
+        sys.exit(0)
+    pid = pos_args[0]
     if "--fetch" in sys.argv:
         sys.exit(0 if fetch_then_run(pid) else 1)
     if "--list" in sys.argv:

@@ -1,0 +1,41 @@
+{
+  "pid": 501,
+  "slug": "find-mode-in-binary-search-tree",
+  "title": "二叉搜索树中的众数",
+  "method": "findMode",
+  "mode": "treenode",
+  "in_mode": "treenode",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "root",
+      "type": "TreeNode"
+    }
+  ],
+  "return_type": "integer[]",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          null,
+          2,
+          2
+        ]
+      ],
+      "output": [
+        2
+      ]
+    },
+    {
+      "input": [
+        [
+          0
+        ]
+      ],
+      "output": [
+        0
+      ]
+    }
+  ]
+}

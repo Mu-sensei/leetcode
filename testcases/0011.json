@@ -1,0 +1,43 @@
+{
+  "pid": 11,
+  "slug": "container-with-most-water",
+  "title": "盛最多水的容器",
+  "method": "maxArea",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "height",
+      "type": "integer[]"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          8,
+          6,
+          2,
+          5,
+          4,
+          8,
+          3,
+          7
+        ]
+      ],
+      "output": 49
+    },
+    {
+      "input": [
+        [
+          1,
+          1
+        ]
+      ],
+      "output": 1
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "pid": 344,
+  "slug": "reverse-string",
+  "title": "反转字符串",
+  "method": "reverseString",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "character[]"
+    }
+  ],
+  "return_type": "void",
+  "cases": [
+    {
+      "input": [
+        [
+          "h",
+          "e",
+          "l",
+          "l",
+          "o"
+        ]
+      ],
+      "output": [
+        "o",
+        "l",
+        "l",
+        "e",
+        "h"
+      ]
+    },
+    {
+      "input": [
+        [
+          "H",
+          "a",
+          "n",
+          "n",
+          "a",
+          "h"
+        ]
+      ],
+      "output": [
+        "h",
+        "a",
+        "n",
+        "n",
+        "a",
+        "H"
+      ]
+    }
+  ]
+}

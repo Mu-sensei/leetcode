@@ -65,7 +65,14 @@ python3 local_run.py 15            # 跑第 15 题（自动用它的官方用例
 python3 local_run.py 15 --fetch    # 本地没用例时, 先从 LeetCode 官方拉一份再跑
 python3 local_run.py 9 --list      # 只列出第 9 题的用例, 不执行
 python3 tools/fetch_testcases.py --all   # 一次性拉全部题目的官方用例
+python3 local_run.py 15 --debug           # 调试模式: 打印每组真实入参/期望, 抛异常时自动进 pdb
 ```
+
+### 调试（debug）
+
+`--debug` 开关会在运行时打印每个用例**构造好的真实入参 `call_args`** 以及 `got` / `expected` 的完整内容；**一旦某组用例执行抛异常，立即进入 pdb 事后调试**（输入 `l` 看代码、`p 变量名` 看值、`u`/`d` 在调用栈上下移动、`c`/`q` 退出）。适合定位"逻辑算错"和"运行时报错"两类问题。
+
+更重的单步调试建议在 **PyCharm** 里配一个 `local_run.py` 的运行/调试配置（Parameters 填题号），直接在解法文件打断点用 IDE 的 Debug 视图。
 
 ### SQL（数据库）类题目也能跑
 
@@ -80,11 +87,12 @@ python3 tools/fetch_testcases.py --all   # 一次性拉全部题目的官方用�
 
 ---
 
-## 分支与协作
+## 分支与同步机制
 
-- `main`：稳定分支，已通过测试的内容才合进来。
-- `develop`：日常开发分支，新题/改动先提到这里，再开 PR 合到 `main`。
-- 详见每次开 PR 时的模板说明。
+- `develop`：日常开发分支，新题/改动由 LeetCode Editor 插件写到 `solutions/.../cn/` 后，自动提交到这里。
+- `main`：`develop` 的内容通过自动脚本 **直接强推同步** 过来（`git push origin develop:main --force-with-lease`，带防覆盖校验），**不走 PR**。`main` 始终等于最新已提交的 `develop`，因此 GitHub 网页上看到的"commit 到 main"其实是同步推过来的。
+
+> 同步是全自动的：见下方「自动交付到 GitHub」。`.github/PULL_REQUEST_TEMPLATE.md` 仅为模板，本仓库实际不使用 PR 流程。
 
 ---
 

@@ -1,0 +1,40 @@
+{
+  "pid": 404,
+  "slug": "sum-of-left-leaves",
+  "title": "左叶子之和",
+  "method": "sumOfLeftLeaves",
+  "mode": "treenode",
+  "in_mode": "treenode",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "root",
+      "type": "TreeNode"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ]
+      ],
+      "output": 24
+    },
+    {
+      "input": [
+        [
+          1
+        ]
+      ],
+      "output": 0
+    }
+  ]
+}

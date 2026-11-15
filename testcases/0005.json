@@ -1,0 +1,30 @@
+{
+  "pid": 5,
+  "slug": "longest-palindromic-substring",
+  "title": "最长回文子串",
+  "method": "longestPalindrome",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        "babad"
+      ],
+      "output": "bab"
+    },
+    {
+      "input": [
+        "cbbd"
+      ],
+      "output": "bb"
+    }
+  ]
+}

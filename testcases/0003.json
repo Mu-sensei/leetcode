@@ -1,0 +1,36 @@
+{
+  "pid": 3,
+  "slug": "longest-substring-without-repeating-characters",
+  "title": "无重复字符的最长子串",
+  "method": "lengthOfLongestSubstring",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        "abcabcbb"
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        "bbbbb"
+      ],
+      "output": 1
+    },
+    {
+      "input": [
+        "pwwkew"
+      ],
+      "output": 3
+    }
+  ]
+}

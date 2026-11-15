@@ -1,0 +1,43 @@
+{
+  "pid": 6,
+  "slug": "zigzag-conversion",
+  "title": "Z 字形变换",
+  "method": "convert",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    },
+    {
+      "name": "numRows",
+      "type": "integer"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        "PAYPALISHIRING",
+        3
+      ],
+      "output": "PAHNAPLSIIGYIR"
+    },
+    {
+      "input": [
+        "PAYPALISHIRING",
+        4
+      ],
+      "output": "PINALSIGYAHRPI"
+    },
+    {
+      "input": [
+        "A",
+        1
+      ],
+      "output": "A"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "pid": 8,
+  "slug": "string-to-integer-atoi",
+  "title": "字符串转换整数 (atoi)",
+  "method": "myAtoi",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "s",
+      "type": "string"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        "42"
+      ],
+      "output": 42
+    },
+    {
+      "input": [
+        "   -042"
+      ],
+      "output": -42
+    },
+    {
+      "input": [
+        "1337c0d3"
+      ],
+      "output": 1337
+    },
+    {
+      "input": [
+        "0-1"
+      ],
+      "output": 0
+    },
+    {
+      "input": [
+        "words and 987"
+      ],
+      "output": 0
+    }
+  ]
+}

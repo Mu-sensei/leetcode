@@ -31,8 +31,7 @@
 class MyStack(object):
 
     def __init__(self):
-        self.queue1 = deque()
-        self.queue2 = deque()
+        self.queue1 = []
 
 
     def push(self, x):
@@ -46,22 +45,24 @@ class MyStack(object):
         """
         :rtype: int
         """
-        while len(self.queue1) > 1:
-            self.queue2.append(self.queue1.popleft())
-        result = self.queue1.popleft()
-        self.queue1, self.queue2 = self.queue2, self.queue1
-        return result
+        # while len(self.queue1) > 1:
+        #     self.queue2.append(self.queue1.popleft())
+        # result = self.queue1.popleft()
+        # self.queue1, self.queue2 = self.queue2, self.queue1
+        # return result
+        return self.queue1.pop()
 
     def top(self):
         """
         :rtype: int
         """
-        while len(self.queue1) > 1:
-            self.queue2.append(self.queue1.popleft())
-        result = self.queue1[0]
-        self.queue2.append(self.queue1.popleft())
-        self.queue1, self.queue2 = self.queue2, self.queue1
-        return result
+        # while len(self.queue1) > 1:
+        #     self.queue2.append(self.queue1.popleft())
+        # result = self.queue1[0]
+        # self.queue2.append(self.queue1.popleft())
+        # self.queue1, self.queue2 = self.queue2, self.queue1
+        # return result
+        return self.queue1[len(self.queue1)-1]
 
 
     def empty(self):
