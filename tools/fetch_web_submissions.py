@@ -241,6 +241,8 @@ def main():
                 seen_code.add(key)
                 uniq.append((sid, code, title))
         title = re.sub(r'[/\\:*?"<>|]', "", uniq[0][2]).strip() or "untitled"
+        # 文件名里的空格/反斜杠会让 shell 与 git 显示成 "2\ 的幂" 这类转义, 统一收敛
+        title = re.sub(r"\s+", "", title)
 
         if fid not in existing:
             log("  ★ 新题 %-5s %s (提交 %d 次, %d 种解法)" % (
@@ -256,7 +258,7 @@ def main():
             if not dry:
                 os.makedirs(VAR_DIR, exist_ok=True)
                 for i, (sid, code, _) in enumerate(uniq, 1):
-                    p = os.path.join(VAR_DIR, "[%04d]-%d%s.py" % (fid, i, title))
+                    p = os.path.join(VAR_DIR, "[%04d]-%d-%s.py" % (fid, i, title))
                     with open(p, "w", encoding="utf-8") as f:
                         f.write(code.rstrip() + "\n")
 
