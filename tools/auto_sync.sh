@@ -35,6 +35,11 @@ cd "$REPO" || { echo "cd 失败"; exit 1; }
 git fetch origin >/dev/null 2>&1
 git rebase origin/develop >/dev/null 2>&1 || git rebase --abort >/dev/null 2>&1
 
+# 【网页做题同步】作者习惯在 leetcode.cn 网页上做题, 代码只存在 LeetCode 服务器,
+# 本地不会生成文件。所以同步前先从网页把新提交的题解拉下来, 再走下面的分类+提交。
+# 该脚本自带容错: 登录态失效/钥匙串不可用时只打日志并返回 0, 不阻断本流程。
+"$PY" "$REPO/tools/fetch_web_submissions.py" || echo "warn: 网页同步异常(已跳过, 继续本地流程)"
+
 # 重跑分类（生成/更新 WEEKLY_REPORT.md 与 weeks/）
 "$PY" "$REPO/tools/classify.py" || { echo "classify 失败"; exit 1; }
 
