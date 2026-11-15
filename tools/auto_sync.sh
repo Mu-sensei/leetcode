@@ -43,9 +43,14 @@ git rebase origin/develop >/dev/null 2>&1 || git rebase --abort >/dev/null 2>&1
 # 重跑分类（生成/更新 WEEKLY_REPORT.md 与 weeks/）
 "$PY" "$REPO/tools/classify.py" || { echo "classify 失败"; exit 1; }
 
-# 有变更才提交 + 推送
-if ! git -c core.quotePath=false diff --quiet; then
-  git -c core.quotePath=false add -A
+# 重建 INDEX.md 总清单（按题号 / 按难度，附分类后的练习日期）
+"$PY" "$REPO/tools/build_index.py" || echo "warn: 重建 INDEX 失败(继续本地流程)"
+
+# 有变更才提交 + 推送。
+# 先 add -A 再判断暂存区：老写法 git diff --quiet 看不到「只新增了未跟踪文件」的情况，
+# 会把新增的题解/脚本漏掉不提交。
+git -c core.quotePath=false add -A
+if ! git -c core.quotePath=false diff --cached --quiet; then
   git -c core.quotePath=false commit -q -m "chore: 自动同步刷题进度与周报分类"
   git push origin develop || { echo "push develop 失败"; exit 1; }
   git push origin develop:main --force-with-lease || echo "warn: main 同步失败（下次重试）"

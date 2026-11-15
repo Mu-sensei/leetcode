@@ -32,6 +32,22 @@ START_WS = date(2026, 9, 14)          # 正式计时第1周起点（周一）
 BURST_WS = date(2026, 10, 5)          # 原“爆发周”
 BURST_SPREAD = (date(2026, 9, 28), date(2026, 10, 7))  # 爆发周平铺窗口
 
+# 人工指定日期（作者要求，优先级最高）：第 9 周新增的 10 题集中在
+# 2026-11-11(周三) ~ 2026-11-15(周日)，5 天 × 每天 2 题，共 10 题。
+# 写死在脚本里并随仓库提交，即使 tools/.cache 状态丢失、日后重跑也不会漂回周一/周二。
+MANUAL_DATES = {
+    3:   date(2026, 11, 11),   # 周三
+    5:   date(2026, 11, 11),
+    6:   date(2026, 11, 12),   # 周四
+    7:   date(2026, 11, 12),
+    8:   date(2026, 11, 13),   # 周五
+    11:  date(2026, 11, 13),
+    12:  date(2026, 11, 14),   # 周六
+    344: date(2026, 11, 14),
+    404: date(2026, 11, 15),   # 周日
+    501: date(2026, 11, 15),
+}
+
 SITE = "leetcode.cn"
 CFG = os.path.expanduser(
     "~/Library/Application Support/JetBrains/PyCharmCE2024.3/options/leetcode-config.xml")
@@ -258,15 +274,23 @@ def main():
 
     # 新增题覆盖：本地有、不在历史状态、且无真实AC时间 → 归入“当前周”（本周新题）
     # 仅当已完成首次播种(seeded)后才生效，避免把老题误判为新题
+    # 按作者习惯：从周三铺到周日，每天 2 题（每天 2~3 题），不再散到周一/周二。
     new_counter = 0
     if seeded:
+        tail_days = [wstart(TODAY) + timedelta(days=k) for k in range(2, 7)]  # 周三~周日
         for fid in sorted(loc):
             if fid in EXCLUDE or str(fid) in state or fid in matched:
                 continue
             if fid in final:
-                ws = wstart(TODAY)
-                final[fid] = (ws + timedelta(days=new_counter % 7), False, True)
+                final[fid] = (tail_days[(new_counter // 2) % len(tail_days)], False, True)
                 new_counter += 1
+
+    # 人工指定日期优先（见文件头 MANUAL_DATES）：覆盖自动平摊结果与历史状态，
+    # 保证这 10 题永远固定在周三~周日，不随缓存/重跑漂移。
+    for fid, d in MANUAL_DATES.items():
+        if fid in final:
+            _, real, is_new = final[fid]
+            final[fid] = (d, real, is_new)
 
     # 保存状态
     os.makedirs(CACHE_DIR, exist_ok=True)
@@ -340,7 +364,10 @@ def main():
     L1.append("## 说明")
     L1.append(f"- **{n_real} 题**保留 LeetCode 真实**首次 AC 周次**（哪一周真实），并把同一天扎堆的提交平摊到当周七天，避免「一天几十道」的假数据。")
     L1.append(f"- **{n_est} 题**在 LeetCode 提交接口未返回 AC 记录，按「学习期」估算分配到前期铺垫/相应周次（标「估计」）。")
-    L1.append(f"- **{n_new} 题**为本机新增但题目（自动化发现），默认归入「当前周」并平摊到当周各天（标「本周新题」）。")
+    L1.append(f"- **{n_new} 题**为自动化发现的本机新增题，归入「当前周」并平摊到**周三~周日、每天 2 题**（标「本周新题」）。")
+    L1.append(f"- **人工日期**：第 9 周新增的 {len(MANUAL_DATES)} 题按作者要求固定为 "
+              "2026-11-11(周三) ~ 2026-11-15(周日)、每天 2 题；该分配写死在 `tools/classify.py` 的 "
+              "`MANUAL_DATES` 中，即使缓存丢失、日后重跑也不会漂回周一/周二。")
     L1.append(f"- **爆发周处理**：原集中在 2026-10-05~10-11 的 {len(burst)} 题，已平铺到 **2026-09-28 ~ 2026-10-07**（覆盖第 3、4 周），单日最多 { (len(burst)+n_days-1)//n_days } 道。")
     L1.append("- 「前期铺垫」= 2026-09-14 之前做的题，作为正式计时前的基础，按日期列出、不计入周次编号。")
     L1.append("- 来源列：`真实AC`=周次真实（天为平滑分布）；`估计`=周次与天均为估算；`本周新题`=自动化新发现、归入当前周。")
