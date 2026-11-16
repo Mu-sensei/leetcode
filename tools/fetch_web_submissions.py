@@ -298,6 +298,8 @@ def main():
                 with open(path, "w", encoding="utf-8") as f:
                     f.write(uniq[0][1].rstrip() + "\n")
         # 多解法: 额外的版本按 -1 / -2 编号存入 variants/
+        # 注意: uniq 来自「最近提交列表」(新→旧), 所以 -1 是后提交的那版、-2 是先提交的,
+        #       编号不是时间正序; 讲解文档开头有「真实提交时间线」小节说明真实先后。
         if len(uniq) > 1:
             variant_ids.append(fid)
             if not dry:
