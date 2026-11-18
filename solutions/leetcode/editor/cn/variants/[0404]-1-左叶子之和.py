@@ -12,9 +12,14 @@ class Solution(object):
         """
         if not root:
             return 0
-        sum = 0
-        if root.left and not root.left.left and not root.left.right:
-            sum += root.left.val
-        sum += self.sumOfLeftLeaves(root.left)
-        sum += self.sumOfLeftLeaves(root.right)
-        return sum
+        total = 0
+        stack = [root]
+        while stack:
+            node = stack.pop()                      
+            if node.left:
+                if not node.left.left and not node.left.right:
+                    total += node.left.val           
+                stack.append(node.left)              
+            if node.right:
+                stack.append(node.right)           
+        return total

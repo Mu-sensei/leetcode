@@ -12,15 +12,9 @@ class Solution(object):
         """
         if not root:
             return 0
-        total = 0
-        stack = [root]
-        while stack:
-            node = stack.pop()
-            # 看 node 的左孩子是不是"左叶子"
-            if node.left:
-                if not node.left.left and not node.left.right:
-                    total += node.left.val
-                stack.append(node.left)   # 左孩子入栈待处理
-            if node.right:
-                stack.append(node.right)  # 右孩子入栈待处理
-        return total
+        sum = 0
+        if root.left and not root.left.left and not root.left.right:
+            sum += root.left.val
+        sum += self.sumOfLeftLeaves(root.left)
+        sum += self.sumOfLeftLeaves(root.right)
+        return sum
