@@ -1,0 +1,61 @@
+{
+  "pid": 19,
+  "slug": "remove-nth-node-from-end-of-list",
+  "title": "删除链表的倒数第 N 个结点",
+  "method": "removeNthFromEnd",
+  "mode": "listnode",
+  "in_mode": "listnode",
+  "out_mode": "listnode",
+  "params": [
+    {
+      "name": "head",
+      "type": "ListNode"
+    },
+    {
+      "name": "n",
+      "type": "integer"
+    }
+  ],
+  "return_type": "ListNode",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        2
+      ],
+      "output": [
+        1,
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        1
+      ],
+      "output": []
+    },
+    {
+      "input": [
+        [
+          1,
+          2
+        ],
+        1
+      ],
+      "output": [
+        1
+      ]
+    }
+  ]
+}

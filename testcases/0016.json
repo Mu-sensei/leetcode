@@ -1,0 +1,45 @@
+{
+  "pid": 16,
+  "slug": "3sum-closest",
+  "title": "最接近的三数之和",
+  "method": "threeSumClosest",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "nums",
+      "type": "integer[]"
+    },
+    {
+      "name": "target",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        [
+          -1,
+          2,
+          1,
+          -4
+        ],
+        1
+      ],
+      "output": 2
+    },
+    {
+      "input": [
+        [
+          0,
+          0,
+          0
+        ],
+        1
+      ],
+      "output": 0
+    }
+  ]
+}

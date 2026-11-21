@@ -1,0 +1,38 @@
+{
+  "pid": 22,
+  "slug": "generate-parentheses",
+  "title": "括号生成",
+  "method": "generateParenthesis",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "n",
+      "type": "integer"
+    }
+  ],
+  "return_type": "list<string>",
+  "cases": [
+    {
+      "input": [
+        3
+      ],
+      "output": [
+        "((()))",
+        "(()())",
+        "(())()",
+        "()(())",
+        "()()()"
+      ]
+    },
+    {
+      "input": [
+        1
+      ],
+      "output": [
+        "()"
+      ]
+    }
+  ]
+}
