@@ -1,0 +1,30 @@
+{
+  "pid": 38,
+  "slug": "count-and-say",
+  "title": "外观数列",
+  "method": "countAndSay",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "n",
+      "type": "integer"
+    }
+  ],
+  "return_type": "string",
+  "cases": [
+    {
+      "input": [
+        1
+      ],
+      "output": "1211"
+    },
+    {
+      "input": [
+        4
+      ],
+      "output": "1"
+    }
+  ]
+}

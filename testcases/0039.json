@@ -1,0 +1,79 @@
+{
+  "pid": 39,
+  "slug": "combination-sum",
+  "title": "组合总和",
+  "method": "combinationSum",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "candidates",
+      "type": "integer[]"
+    },
+    {
+      "name": "target",
+      "type": "integer"
+    }
+  ],
+  "return_type": "list<list<integer>>",
+  "cases": [
+    {
+      "input": [
+        [
+          2,
+          3,
+          6,
+          7
+        ],
+        7
+      ],
+      "output": [
+        [
+          2,
+          2,
+          3
+        ],
+        [
+          7
+        ]
+      ]
+    },
+    {
+      "input": [
+        [
+          2,
+          3,
+          5
+        ],
+        8
+      ],
+      "output": [
+        [
+          2,
+          2,
+          2,
+          2
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          3,
+          5
+        ]
+      ]
+    },
+    {
+      "input": [
+        [
+          2
+        ],
+        1
+      ],
+      "output": []
+    }
+  ]
+}
