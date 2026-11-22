@@ -1,0 +1,64 @@
+{
+  "pid": 24,
+  "slug": "swap-nodes-in-pairs",
+  "title": "两两交换链表中的节点",
+  "method": "swapPairs",
+  "mode": "listnode",
+  "in_mode": "listnode",
+  "out_mode": "listnode",
+  "params": [
+    {
+      "name": "head",
+      "type": "ListNode"
+    }
+  ],
+  "return_type": "ListNode",
+  "cases": [
+    {
+      "input": [
+        [
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "output": [
+        2,
+        1,
+        4,
+        3
+      ]
+    },
+    {
+      "input": [
+        []
+      ],
+      "output": []
+    },
+    {
+      "input": [
+        [
+          1
+        ]
+      ],
+      "output": [
+        1
+      ]
+    },
+    {
+      "input": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "output": [
+        2,
+        1,
+        3
+      ]
+    }
+  ]
+}

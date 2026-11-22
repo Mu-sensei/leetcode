@@ -1,0 +1,36 @@
+{
+  "pid": 29,
+  "slug": "divide-two-integers",
+  "title": "两数相除",
+  "method": "divide",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "dividend",
+      "type": "integer"
+    },
+    {
+      "name": "divisor",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer",
+  "cases": [
+    {
+      "input": [
+        10,
+        3
+      ],
+      "output": 3
+    },
+    {
+      "input": [
+        7,
+        -3
+      ],
+      "output": -2
+    }
+  ]
+}
