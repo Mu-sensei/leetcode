@@ -1,0 +1,66 @@
+{
+  "pid": 34,
+  "slug": "find-first-and-last-position-of-element-in-sorted-array",
+  "title": "在排序数组中查找元素的第一个和最后一个位置",
+  "method": "searchRange",
+  "mode": "plain",
+  "in_mode": "plain",
+  "out_mode": "plain",
+  "params": [
+    {
+      "name": "nums",
+      "type": "integer[]"
+    },
+    {
+      "name": "target",
+      "type": "integer"
+    }
+  ],
+  "return_type": "integer[]",
+  "cases": [
+    {
+      "input": [
+        [
+          5,
+          7,
+          7,
+          8,
+          8,
+          10
+        ],
+        8
+      ],
+      "output": [
+        3,
+        4
+      ]
+    },
+    {
+      "input": [
+        [
+          5,
+          7,
+          7,
+          8,
+          8,
+          10
+        ],
+        6
+      ],
+      "output": [
+        -1,
+        -1
+      ]
+    },
+    {
+      "input": [
+        [],
+        0
+      ],
+      "output": [
+        -1,
+        -1
+      ]
+    }
+  ]
+}
