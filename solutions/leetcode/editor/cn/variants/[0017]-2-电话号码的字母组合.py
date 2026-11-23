@@ -4,6 +4,8 @@ class Solution(object):
         :type digits: str
         :rtype: List[str]
         """
+        if not digits:
+            return []
         digit_to_letters = {
             '2': 'abc',
             '3': 'def',
@@ -14,14 +16,13 @@ class Solution(object):
             '8': 'tuv',
             '9': 'wxyz'
         }
-        if not digits:
-            return []
         result = []
-        def backtrack(index, current_combination):
+        stack = [(0, "")]
+        while stack:
+            index, current = stack.pop()
             if index == len(digits):
-                result.append(current_combination)
-                return
+                result.append(current)
+                continue
             for letter in digit_to_letters[digits[index]]:
-                backtrack(index + 1, current_combination + letter)
-        backtrack(0, "")
+                stack.append((index + 1, current + letter))
         return result
